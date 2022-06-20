@@ -129,5 +129,7 @@
       }
     }
   },
-  "defaultProject": "DeltaruneFrBackEnd"
+  "cli": {
+    "analytics": false
+  }
 }
