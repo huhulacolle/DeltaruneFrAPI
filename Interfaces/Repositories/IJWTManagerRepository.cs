@@ -3,5 +3,6 @@
     public interface IJWTManagerRepository
     {
         Tokens Authenticate(User users);
+        Task CreateAccount(User user);
     }
 }

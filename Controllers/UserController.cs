@@ -15,6 +15,21 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpPost]
+        [Route("Inscription")]
+        public async Task<ActionResult> SetAccount(User userdata)
+        {
+            try
+            {
+                await _jWTManager.CreateAccount(userdata);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost]
         [Route("token")]
         public IActionResult Authenticate(User usersdata)
         {
