@@ -24,5 +24,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
             return Ok(result);
         }
+
+
     }
 }

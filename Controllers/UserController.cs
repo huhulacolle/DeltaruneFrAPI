@@ -15,7 +15,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpPost]
-        [Route("Inscription")]
+        [Route("inscription")]
         public async Task<ActionResult> SetAccount(User userdata)
         {
             try
