@@ -30,7 +30,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpPost]
-        [Route("token")]
+        [Route("connexion")]
         public IActionResult Authenticate(User usersdata)
         {
             var token = _jWTManager.Authenticate(usersdata);

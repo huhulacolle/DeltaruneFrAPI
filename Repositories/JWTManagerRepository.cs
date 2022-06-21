@@ -5,17 +5,21 @@
 
         private readonly DefaultSqlConnectionFactory defaultSqlConnectionFactory;
 
+        private IEnumerable<User> UsersRecords;
+
         public JWTManagerRepository(DefaultSqlConnectionFactory defaultSqlConnectionFactory)
         {
             this.defaultSqlConnectionFactory = defaultSqlConnectionFactory;
+            GetAllAcount();
         }
 
-        private readonly Dictionary<string, string> UsersRecords = new Dictionary<string, string>
-    {
-        { "user1","password1"},
-        { "user2","password2"},
-        { "user3","password3"},
-    };
+        /*        private readonly Dictionary<string, string> UsersRecords = new Dictionary<string, string>
+            {
+                { "user1","password1"},
+                { "user2","password2"},
+                { "user3","password3"},
+            };*/
+
         public async Task CreateAccount(User user)
         {
             var dictionary = new Dictionary<string, object>();
@@ -32,7 +36,7 @@
 
         public Tokens Authenticate(User users)
         {
-            if (!UsersRecords.Any(x => x.Key == users.nom && x.Value == users.mdp))
+            if (!UsersRecords.Any(x => x.nom == users.nom && BCrypt.Net.BCrypt.Verify(users.mdp, x.mdp)))
             {
                 return null;
             }
@@ -50,6 +54,14 @@
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return new Tokens { Token = tokenHandler.WriteToken(token) };
+        }
+
+        public void GetAllAcount()
+        {
+            string sql = "SELECT * FROM user";
+
+            using IDbConnection connec = defaultSqlConnectionFactory.Create();
+            UsersRecords = connec.Query<User>(sql);
         }
 
     }
