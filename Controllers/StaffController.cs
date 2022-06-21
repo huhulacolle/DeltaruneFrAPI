@@ -4,6 +4,7 @@
 
 namespace DeltaruneFrBackEnd.Controllers
 {
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class StaffController : ControllerBase

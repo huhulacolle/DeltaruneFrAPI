@@ -5,3 +5,7 @@ global using DeltaruneFrBackEnd.Models;
 global using DeltaruneFrBackEnd.Interfaces.Repositories;
 global using Dapper;
 global using DeltaruneFrBackEnd.Repositories;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.IdentityModel.Tokens;
+global using System.Text;
+global using Microsoft.AspNetCore.Authorization;

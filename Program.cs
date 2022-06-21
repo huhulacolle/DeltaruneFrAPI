@@ -6,15 +6,32 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-var connectionString = Environment.GetEnvironmentVariable("MySQL");
+builder.Services.AddSingleton(new DefaultSqlConnectionFactory(Environment.GetEnvironmentVariable("MySQL")));
 
-#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
-builder.Services.AddSingleton(new DefaultSqlConnectionFactory(connectionString));
-#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(o =>
+{
+	var Key = Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("Token"));
+	o.SaveToken = true;
+	o.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = false,
+		ValidateAudience = false,
+		ValidateLifetime = true,
+		ValidateIssuerSigningKey = true,
+		IssuerSigningKey = new SymmetricSecurityKey(Key)
+	};
+});
 
 builder.Services.AddCors();
 
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+
+builder.Services.AddScoped<IJWTManagerRepository, JWTManagerRepository>();
 
 var app = builder.Build();
 
@@ -36,6 +53,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
