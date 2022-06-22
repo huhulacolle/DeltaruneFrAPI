@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
 
   verifSession(): void {
     const helper = new JwtHelperService();
-    const token = localStorage.getItem('token');
-
+    const token = localStorage.getItem('token')?.toString();
     if (token && !helper.isTokenExpired(token)) {
       this.router.navigateByUrl('/home');
     }
