@@ -143,18 +143,18 @@ export class UserdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getAccount(nom: string | null | undefined, mdp: string | null | undefined): Observable<Tokens> {
-        let url_ = this.baseUrl + "/api/connexion?";
-        if (nom !== undefined && nom !== null)
-            url_ += "nom=" + encodeURIComponent("" + nom) + "&";
-        if (mdp !== undefined && mdp !== null)
-            url_ += "mdp=" + encodeURIComponent("" + mdp) + "&";
+    getAccount(usersdata: User): Observable<Tokens> {
+        let url_ = this.baseUrl + "/api/connexion";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(usersdata);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };

@@ -12,7 +12,7 @@ export class DeltaruneService {
   ) { }
 
   public getAccount(user: string, mdp: string): Observable<Tokens> {
-    return this.user.getAccount(user, mdp);
+    return this.user.getAccount(new User({nom: user, mdp: mdp}));
   }
 
   public test(): Observable<string> {
