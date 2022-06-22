@@ -24,6 +24,12 @@ export class LoginComponent implements OnInit {
     this.verifSession();
   }
 
+  test(): void {
+    this.deltaruneService.test().subscribe(data => {
+      console.log("réponse : " + data);
+    })
+  }
+
   verifSession(): void {
     const helper = new JwtHelperService();
     const token = localStorage.getItem('token')?.toString();

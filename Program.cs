@@ -6,8 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-Console.WriteLine(Environment.GetEnvironmentVariable("MySQL"));
-
 builder.Services.AddSingleton(new DefaultSqlConnectionFactory(Environment.GetEnvironmentVariable("MySQL")));
 
 builder.Services.AddAuthentication(x =>
