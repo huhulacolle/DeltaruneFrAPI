@@ -1,13 +1,13 @@
-﻿namespace DeltaruneFrBackEnd.Repositories
+﻿namespace DeltaruneFrBackEnd.Infrastructures
 {
-    public class JWTManagerRepository : IJWTManagerRepository
+    public class JWTManager : IJWTManager
     {
 
         private readonly DefaultSqlConnectionFactory defaultSqlConnectionFactory;
 
         private IEnumerable<User>? UsersRecords;
 
-        public JWTManagerRepository(DefaultSqlConnectionFactory defaultSqlConnectionFactory)
+        public JWTManager(DefaultSqlConnectionFactory defaultSqlConnectionFactory)
         {
             this.defaultSqlConnectionFactory = defaultSqlConnectionFactory;
         }
@@ -22,7 +22,7 @@
             parameters.AddDynamicParams(dictionary);
 
             string sql = "INSERT INTO `user`(nom, mdp) VALUES (@nom, @mdp)";
-            using IDbConnection connec = this.defaultSqlConnectionFactory.Create();
+            using IDbConnection connec = defaultSqlConnectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
 

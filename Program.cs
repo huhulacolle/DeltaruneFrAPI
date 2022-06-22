@@ -33,7 +33,7 @@ builder.Services.AddSwaggerDocument();
 
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 
-builder.Services.AddScoped<IJWTManagerRepository, JWTManagerRepository>();
+builder.Services.AddScoped<IJWTManager, JWTManager>();
 
 var app = builder.Build();
 
