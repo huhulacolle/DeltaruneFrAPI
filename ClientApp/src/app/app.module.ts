@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './composents/login/login.component';
+import { UserdeltaruneClient } from './clientSwagger/deltaruneClient';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { LoginComponent } from './login/login.component';
       { path: '', component: LoginComponent, pathMatch: 'full' }
     ])
   ],
-  providers: [],
+  providers: [UserdeltaruneClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

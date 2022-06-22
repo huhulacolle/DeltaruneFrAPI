@@ -1,17 +1,19 @@
 <br><br>
-<form>
+<form (ngSubmit)="getUser()">
   <!-- Email input -->
   <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
+    <input type="email" id="form2Example1" class="form-control" required/>
     <label class="form-label" for="form2Example1">Nom</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
+    <input type="password" id="form2Example2" class="form-control" required/>
     <label class="form-label" for="form2Example2">Mot de passe</label>
   </div>
 
   <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4">Connexion</button>
+  <button type="submit" class="btn btn-primary btn-block mb-4">Connexion</button>
 </form>
+
+<button (click)="test()">test</button>

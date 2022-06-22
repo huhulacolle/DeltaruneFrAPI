@@ -16,7 +16,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [HttpPost]
         [Route("inscription")]
-        public async Task<ActionResult> SetAccount(User userdata)
+        public async Task<IActionResult> SetAccount(User userdata)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [HttpPost]
         [Route("connexion")]
-        public IActionResult Authenticate(User usersdata)
+        public ActionResult<Tokens> GetAccount(User usersdata)
         {
             var token = _jWTManager.Authenticate(usersdata);
 
@@ -41,6 +41,13 @@ namespace DeltaruneFrBackEnd.Controllers
             }
 
             return Ok(token);
+        }
+
+        [HttpGet]
+        [Route("test")]
+        public ActionResult<string> Test()
+        {
+            return Ok("ok");
         }
     }
 }
