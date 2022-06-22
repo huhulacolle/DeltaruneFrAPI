@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './composents/login/login.component';
-import { UserdeltaruneClient } from './clientSwagger/deltaruneClient';
+import { StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
 import { HomeComponent } from './composents/home/home.component';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { HomeComponent } from './composents/home/home.component';
       { path: 'home', component: HomeComponent}
     ])
   ],
-  providers: [UserdeltaruneClient],
+  providers: [UserdeltaruneClient, StaffdeltaruneClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
