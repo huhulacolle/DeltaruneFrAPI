@@ -5,20 +5,12 @@
 
         private readonly DefaultSqlConnectionFactory defaultSqlConnectionFactory;
 
-        private IEnumerable<User> UsersRecords;
+        private IEnumerable<User>? UsersRecords;
 
         public JWTManagerRepository(DefaultSqlConnectionFactory defaultSqlConnectionFactory)
         {
             this.defaultSqlConnectionFactory = defaultSqlConnectionFactory;
-            GetAllAcount();
         }
-
-        /*        private readonly Dictionary<string, string> UsersRecords = new Dictionary<string, string>
-            {
-                { "user1","password1"},
-                { "user2","password2"},
-                { "user3","password3"},
-            };*/
 
         public async Task CreateAccount(User user)
         {
@@ -36,6 +28,8 @@
 
         public Tokens Authenticate(User users)
         {
+            GetAllAcount();
+
             if (!UsersRecords.Any(x => x.nom == users.nom && BCrypt.Net.BCrypt.Verify(users.mdp, x.mdp)))
             {
                 return null;
@@ -49,7 +43,7 @@
               {
              new Claim(ClaimTypes.Name, users.nom)
               }),
-                Expires = DateTime.UtcNow.AddMinutes(10),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

@@ -7,18 +7,21 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './composents/login/login.component';
 import { UserdeltaruneClient } from './clientSwagger/deltaruneClient';
+import { HomeComponent } from './composents/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: LoginComponent, pathMatch: 'full' }
+      { path: '', component: LoginComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent}
     ])
   ],
   providers: [UserdeltaruneClient],

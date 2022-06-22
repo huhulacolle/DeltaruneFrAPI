@@ -31,8 +31,14 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [HttpPost]
         [Route("connexion")]
-        public ActionResult<Tokens> GetAccount(User usersdata)
+        public ActionResult<Tokens> GetAccount(string nom, string mdp)
         {
+            User usersdata = new()
+            {
+                nom = nom,
+                mdp = mdp
+            };
+
             var token = _jWTManager.Authenticate(usersdata);
 
             if (token == null)

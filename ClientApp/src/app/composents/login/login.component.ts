@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/clientSwagger/deltaruneClient';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
 
 @Component({
@@ -9,29 +10,41 @@ import { DeltaruneService } from 'src/app/services/deltarune.service';
 })
 export class LoginComponent implements OnInit {
 
-  user: User[] = [];
+  nom: string = "";
+  mdp: string = "";
+
+  session: boolean = false;
 
   constructor(
-    private deltaruneService: DeltaruneService
+    private deltaruneService: DeltaruneService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.verifSession();
   }
 
-  public test(): void {
-    this.deltaruneService.test().subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.error("salut");
-      }
-    )
+  verifSession(): void {
+    const helper = new JwtHelperService();
+    const token = localStorage.getItem('token');
+
+    if (token && !helper.isTokenExpired(token)) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
   public getUser(): void {
-    console.log("salut");
+
+    if (this.nom == "" || this.mdp == "") {
+      alert("nom ou mdp manquant");
+    }
+    else{
+      this.deltaruneService.getAccount(this.nom, this.mdp).subscribe(
+        data => {
+          localStorage.setItem('token', data.token);
+          this.router.navigateByUrl('/home');
+        }
+      )
+    }
   }
-
-
 }

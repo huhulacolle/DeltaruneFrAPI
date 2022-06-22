@@ -11,8 +11,8 @@ export class DeltaruneService {
     private user: UserdeltaruneClient
   ) { }
 
-  public getAccount(user: User): Observable<Tokens> {
-    return this.user.getAccount(user);
+  public getAccount(user: string, mdp: string): Observable<Tokens> {
+    return this.user.getAccount(user, mdp);
   }
 
   public test(): Observable<string> {
