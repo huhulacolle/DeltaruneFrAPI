@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,8 @@ import { Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneCli
 export class DeltaruneService {
 
   constructor(
-    private user: UserdeltaruneClient
+    private user: UserdeltaruneClient,
+    private staff: StaffdeltaruneClient
   ) { }
 
   public getAccount(user: string, mdp: string): Observable<Tokens> {

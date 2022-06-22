@@ -17,6 +17,10 @@ export class HomeComponent implements OnInit {
     this.verifSession();
   }
 
+  setStaff(): void {
+    console.log("salut");
+  }
+
   verifSession(): void {
     const helper = new JwtHelperService();
     const token = localStorage.getItem('token')?.toString();
