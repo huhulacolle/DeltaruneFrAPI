@@ -10,7 +10,7 @@
         }
         public async Task<IEnumerable<Staff>> GetStaff()
         {
-            string sql = "SELECT * FROM staff";
+            string sql = "SELECT * FROM staff ORDER BY id DESC";
 
             using IDbConnection connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql);

@@ -82,7 +82,7 @@ export class StaffdeltaruneClient {
     }
 
     setStaff(staff: Staff): Observable<FileResponse | null> {
-        let url_ = this.baseUrl + "/api";
+        let url_ = this.baseUrl + "/api/staff";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(staff);

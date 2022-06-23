@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -9,6 +9,7 @@ import { LoginComponent } from './composents/login/login.component';
 import { API_BASE_URL, StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
 import { HomeComponent } from './composents/home/home.component';
 import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,11 @@ import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service'
 			deps: [ApiUrlService],
 			multi: true,
 		},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
     { provide: API_BASE_URL, useFactory: (service: ApiUrlService) => service.apiUrl, deps: [ApiUrlService] },
   ],
   bootstrap: [AppComponent]

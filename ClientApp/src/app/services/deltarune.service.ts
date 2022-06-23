@@ -1,3 +1,4 @@
+import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Staff, StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
@@ -16,18 +17,9 @@ export class DeltaruneService {
     return this.user.getAccount(new User({nom: user, mdp: mdp}));
   }
 
-  // public GetStaff(nom: string, photo: string, description: string | undefined, card: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<Staff> {
-  //   let user = new Staff;
-  //   user.nom = nom;
-  //   user.photo = photo;
-  //   user.description = description;
-  //   user.card = card;
-  //   user.lien = lien;
-  //   user.nomLien = nomLien;
-  //   user.idChapitre = chapitre;
-
-  //   return this.staff.getStaff(user);
-  // }
+  public SetStaff(nom: string, photo: string, description: string | undefined, card: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<any> {
+    return this.staff.setStaff(new Staff({nom: nom, photo: photo, description: description, card: card, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
+  }
 
   public GetStaff(): Observable<Staff[]> {
     return this.staff.getStaff();

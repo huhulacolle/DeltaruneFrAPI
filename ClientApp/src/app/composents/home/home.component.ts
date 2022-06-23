@@ -32,7 +32,11 @@ export class HomeComponent implements OnInit {
   }
 
   setStaff(): void {
-    console.log(this.description);
+    this.deltaruneService.SetStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, this.chapitre).subscribe(
+      () => {
+        this.GetStaff();
+      }
+    )
   }
 
   GetStaff(): void {
