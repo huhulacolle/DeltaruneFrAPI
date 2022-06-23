@@ -2,7 +2,6 @@
 {
     public class Staff
     {
-        public int id { get; set; }
         public string nom { get; set; }
         public string photo { get; set; }
         public string? description { get; set; }

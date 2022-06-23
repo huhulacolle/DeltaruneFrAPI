@@ -1,15 +1,47 @@
 <br><br>
 <ul class="list-group">
   <form (ngSubmit)="setStaff()">
-
+    nom :
+    <input [(ngModel)]="nom" name="nom" class="form-control" type="text">
+    photo (ex : mario.gif)
+    <input [(ngModel)]="photo" name="photo" class="form-control" type="text">
+    description (non obligatoire)
+    <input [(ngModel)]="description" name="description" class="form-control" type="text">
+    card (non obligatoire)
+    <input [(ngModel)]="card" name="card" class="form-control" type="text">
+    lien (non obligatoire)
+    <input [(ngModel)]="lien" name="lien" class="form-control" type="text">
+    nomlien (non obligatoire)
+    <input [(ngModel)]="nomLien" name="nomLien" class="form-control" type="text">
+    chapitre
+    <input [(ngModel)]="chapitre" name="chapitre" class="form-control" type="number">
+    <br>
+    <input type="submit" class="btn btn-primary btn-block mb-4">
   </form>
 </ul>
 
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Nom</h5>
-    <h6 class="card-subtitle mb-2 text-muted">sous titres</h6>
-    <p class="card-text">Lien</p>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">nom</th>
+      <th scope="col">photo</th>
+      <th scope="col">description</th>
+      <th scope="col">card</th>
+      <th scope="col">lien</th>
+      <th scope="col">nomLien</th>
+      <th scope="col">chapitre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let staff of staffs">
+      <td> {{staff.nom}} </td>
+      <td> {{staff.photo}} </td>
+      <td> {{staff.description}} </td>
+      <td> {{staff.card}} </td>
+      <td> {{staff.lien}} </td>
+      <td> {{staff.nomLien}} </td>
+      <td> {{staff.idChapitre}} </td>
+    </tr>
+  </tbody>
+</table>
+

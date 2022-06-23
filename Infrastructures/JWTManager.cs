@@ -22,7 +22,7 @@
             dictionary.Add("@mdp", BCrypt.Net.BCrypt.HashPassword(user.mdp));
             parameters.AddDynamicParams(dictionary);
 
-            string sql = "INSERT INTO `user`(nom, mdp) VALUES (@nom, @mdp)";
+            string sql = "INSERT INTO user (nom, mdp) VALUES (@nom, @mdp)";
             using IDbConnection connec = defaultSqlConnectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
@@ -30,11 +30,6 @@
         public Tokens Authenticate(User users)
         {
             GetAllAcount();
-
-            foreach (var i in UsersRecords)
-            {
-                Console.WriteLine(i.nom);
-            }
 
             if (!UsersRecords.Any(x => x.nom == users.nom && BCrypt.Net.BCrypt.Verify(users.mdp, x.mdp)))
             {

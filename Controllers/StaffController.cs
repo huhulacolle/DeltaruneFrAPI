@@ -26,6 +26,20 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
+        [HttpPost("staff")]
+        public async Task<ActionResult> SetStaff(Staff staff)
+        {
+            try
+            {
+                await _staffRepository.SetStaff(staff);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         // GET api/Chapitre/
         [HttpGet("Chapitre")]
         public async Task<ActionResult<IEnumerable<Chapitre>>> GetChapitres()
