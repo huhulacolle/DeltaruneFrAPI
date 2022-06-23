@@ -10,7 +10,7 @@
         }
         public async Task<IEnumerable<Staff>> GetStaff()
         {
-            string sql = "SELECT * FROM staff ORDER BY id DESC";
+            string sql = "SELECT * FROM staff";
 
             using IDbConnection connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql);
@@ -23,7 +23,7 @@
             dictionary.Add("@id", id);
             parameters.AddDynamicParams(dictionary);
 
-            string sql = "SELECT * FROM staff WHERE idChapitre = @id ORDER BY id DESC";
+            string sql = "SELECT * FROM staff WHERE idChapitre = @id";
 
             using IDbConnection connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql, parameters);
