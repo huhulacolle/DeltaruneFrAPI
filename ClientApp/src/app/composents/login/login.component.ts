@@ -14,8 +14,6 @@ export class LoginComponent implements OnInit {
   nom: string = "";
   mdp: string = "";
 
-  testprod = environment.production
-
   session: boolean = false;
 
   constructor(
