@@ -31,6 +31,8 @@ builder.Services.AddCors();
 
 builder.Services.AddSwaggerDocument();
 
+builder.Services.AddScoped<ITestRepository, TestRepository>();
+
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 
 builder.Services.AddScoped<IJWTManager, JWTManager>();

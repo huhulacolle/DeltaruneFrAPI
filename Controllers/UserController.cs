@@ -8,10 +8,12 @@ namespace DeltaruneFrBackEnd.Controllers
     public class UserController : ControllerBase
     {
         private readonly IJWTManager _jWTManager;
+        private readonly ITestRepository _testRepository;
 
-        public UserController(IJWTManager jWTManager)
+        public UserController(IJWTManager jWTManager, ITestRepository testRepository)
         {
             _jWTManager = jWTManager;
+            _testRepository = testRepository;
         }
 
         [HttpPost]
@@ -48,6 +50,15 @@ namespace DeltaruneFrBackEnd.Controllers
         public ActionResult<string> Test()
         {
             return Ok("ok");
+        }
+
+        [HttpGet]
+        [Route("test2")]
+        public async Task<ActionResult<IEnumerable<Chapitre>>> TestSQL()
+        {
+            var test = await _testRepository.TestSQL();
+
+            return Ok(test);
         }
     }
 }
