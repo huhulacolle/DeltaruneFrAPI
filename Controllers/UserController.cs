@@ -16,7 +16,7 @@ namespace DeltaruneFrBackEnd.Controllers
             _testRepository = testRepository;
         }
 
-        [HttpPost]
+/*        [HttpPost]
         [Route("inscription")]
         public async Task<IActionResult> SetAccount(User userdata)
         {
@@ -29,7 +29,7 @@ namespace DeltaruneFrBackEnd.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
+        }*/
 
         [HttpPost]
         [Route("connexion")]
