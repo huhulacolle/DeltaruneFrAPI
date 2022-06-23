@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',

@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './composents/login/login.component';
-import { StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
+import { API_BASE_URL, StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
 import { HomeComponent } from './composents/home/home.component';
+import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,17 @@ import { HomeComponent } from './composents/home/home.component';
       { path: 'home', component: HomeComponent}
     ])
   ],
-  providers: [UserdeltaruneClient, StaffdeltaruneClient],
+  providers: [
+    UserdeltaruneClient,
+    StaffdeltaruneClient,
+    {
+			provide: APP_INITIALIZER,
+			useFactory: apiUrlServiceFactory,
+			deps: [ApiUrlService],
+			multi: true,
+		},
+    { provide: API_BASE_URL, useFactory: (service: ApiUrlService) => service.apiUrl, deps: [ApiUrlService] },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
