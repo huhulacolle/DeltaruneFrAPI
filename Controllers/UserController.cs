@@ -56,9 +56,16 @@ namespace DeltaruneFrBackEnd.Controllers
         [Route("test2")]
         public async Task<ActionResult<IEnumerable<Chapitre>>> TestSQL()
         {
-            var test = await _testRepository.TestSQL();
+            try
+            {
+                var test = await _testRepository.TestSQL();
+                return Ok(test);
+            }
+            catch (Exception e)
+            {
+                return NotFound( e.Message);
+            }
 
-            return Ok(test);
         }
     }
 }
