@@ -63,7 +63,7 @@ namespace DeltaruneFrBackEnd.Controllers
             }
             catch (Exception e)
             {
-                return NotFound(e.InnerException);
+                return NotFound( e.Message);
             }
 
         }
