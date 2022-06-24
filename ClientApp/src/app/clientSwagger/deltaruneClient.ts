@@ -27,7 +27,7 @@ export class StaffdeltaruneClient {
     }
 
     getStaff(): Observable<Staff[]> {
-        let url_ = this.baseUrl + "/api/staff";
+        let url_ = this.baseUrl + "/api/Staff";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -82,7 +82,7 @@ export class StaffdeltaruneClient {
     }
 
     setStaff(staff: Staff): Observable<FileResponse | null> {
-        let url_ = this.baseUrl + "/api/staff";
+        let url_ = this.baseUrl + "/api/Staff";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(staff);
@@ -131,8 +131,58 @@ export class StaffdeltaruneClient {
         return _observableOf(null as any);
     }
 
+    deleteStaff(id: number | undefined): Observable<FileResponse | null> {
+        let url_ = this.baseUrl + "/api/Staff?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteStaff(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteStaff(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FileResponse | null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FileResponse | null>;
+        }));
+    }
+
+    protected processDeleteStaff(response: HttpResponseBase): Observable<FileResponse | null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: responseBlob as any, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
     getStaffByID(id: number): Observable<Staff[]> {
-        let url_ = this.baseUrl + "/api/staff/{id}";
+        let url_ = this.baseUrl + "/api/Staff/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -190,7 +240,7 @@ export class StaffdeltaruneClient {
     }
 
     getChapitres(): Observable<Chapitre[]> {
-        let url_ = this.baseUrl + "/api/Chapitre";
+        let url_ = this.baseUrl + "/api/Staff/Chapitre";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {

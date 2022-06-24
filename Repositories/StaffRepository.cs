@@ -27,7 +27,6 @@
 
             using IDbConnection connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql, parameters);
-
         }
 
         public async Task SetStaff(Staff staff)
@@ -46,6 +45,19 @@
 
             string sql = @"INSERT INTO staff (nom, photo, description, card, lien, nomLien, idChapitre) 
                             VALUES (@nom, @photo, @description, @card, @lien, @nomLien, @idChapitre)";
+
+            using IDbConnection connec = _connectionFactory.Create();
+            await connec.QueryAsync(sql, parameters);
+        }
+        public async Task DeleteStaff(int id)
+        {
+            var dictionary = new Dictionary<string, object>();
+            var parameters = new DynamicParameters(dictionary);
+
+            dictionary.Add("@id", id);
+            parameters.AddDynamicParams(dictionary);
+
+            string sql = "DELETE FROM staff WHERE id = @id";
 
             using IDbConnection connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);

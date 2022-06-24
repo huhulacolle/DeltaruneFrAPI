@@ -5,6 +5,7 @@
         public Task<IEnumerable<Staff>> GetStaff();
         public Task<IEnumerable<Staff>> GetStaffById(int id);
         public Task SetStaff(Staff staff);
+        public Task DeleteStaff(int id);
         public Task<IEnumerable<Chapitre>> GetChapitres();
     }
 }
