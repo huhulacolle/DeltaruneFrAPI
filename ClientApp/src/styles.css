@@ -1,16 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: black;
+  font-family: determination;
+  color: white;
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+  /* supported by Chrome and Opera */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
 }
 
-code {
-  color: #e01a76;
+@font-face {
+  font-family: determination;
+  src: url("assets/DeterminationSansWeb.woff");
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+@font-face {
+    font-family: monsterfriend;
+    src: url("assets/monsterfriend.otf");
 }

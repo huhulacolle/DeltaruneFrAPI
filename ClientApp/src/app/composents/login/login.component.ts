@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   nom: string = "";
   mdp: string = "";
 
-  session: boolean = false;
+  loading: boolean = false;
 
   constructor(
     private deltaruneService: DeltaruneService,
@@ -23,12 +23,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.verifSession();
-  }
-
-  test(): void {
-    this.deltaruneService.test().subscribe(data => {
-      console.log("réponse : " + data);
-    })
   }
 
   verifSession(): void {
@@ -40,11 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   public getUser(): void {
-
     if (this.nom == "" || this.mdp == "") {
       alert("nom ou mdp manquant");
     }
     else{
+      this.loading = true;
       this.deltaruneService.getAccount(this.nom, this.mdp).subscribe(
         data => {
           localStorage.setItem('token', data.token);
