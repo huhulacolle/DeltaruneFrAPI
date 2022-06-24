@@ -16,6 +16,15 @@ namespace DeltaruneFrBackEnd.Controllers
             _staffRepository = staffRepository;
         }
 
+        // GET api/Staff/Angular
+        [HttpGet("Angular")]
+        public async Task<ActionResult<IEnumerable<Staff>>> GetAllStaff()
+        {
+            IEnumerable<Staff> result = await _staffRepository.GetStaff();
+
+            return Ok(result);
+        }
+
         // GET api/Staff/
         [AllowAnonymous]
         [HttpGet]

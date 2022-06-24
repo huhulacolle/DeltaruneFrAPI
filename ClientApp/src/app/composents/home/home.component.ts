@@ -28,19 +28,19 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.verifSession();
-    this.GetStaff();
+    this.getAllStaff();
   }
 
   setStaff(): void {
-    this.deltaruneService.SetStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, this.chapitre).subscribe(
+    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, this.chapitre).subscribe(
       () => {
-        this.GetStaff();
+        this.getAllStaff();
       }
     )
   }
 
-  GetStaff(): void {
-    this.deltaruneService.GetStaff().subscribe(
+  getAllStaff(): void {
+    this.deltaruneService.getAllStaff().subscribe(
       data => {
         this.staffs = data;
       }

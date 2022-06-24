@@ -8,9 +8,16 @@
         {
             _connectionFactory = connectionFactory;
         }
+        public async Task<IEnumerable<Staff>> GetAllStaff()
+        {
+            string sql = "SELECT * FROM staff ORDER BY id DESC";
+
+            using IDbConnection connec = _connectionFactory.Create();
+            return await connec.QueryAsync<Staff>(sql);
+        }
         public async Task<IEnumerable<Staff>> GetStaff()
         {
-            string sql = "SELECT * FROM staff ORDER BY nom";
+            string sql = "SELECT DISTINCT nom, photo, description, card, lien, nomLien FROM staff ORDER BY nom";
 
             using IDbConnection connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql);

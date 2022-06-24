@@ -17,12 +17,12 @@ export class DeltaruneService {
     return this.user.getAccount(new User({nom: user, mdp: mdp}));
   }
 
-  public SetStaff(nom: string, photo: string, description: string | undefined, card: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<any> {
+  public setStaff(nom: string, photo: string, description: string | undefined, card: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<any> {
     return this.staff.setStaff(new Staff({nom: nom, photo: photo, description: description, card: card, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
   }
 
-  public GetStaff(): Observable<Staff[]> {
-    return this.staff.getStaff();
+  public getAllStaff(): Observable<Staff[]> {
+    return this.staff.getAllStaff();
   }
 
   public test(): Observable<string> {
