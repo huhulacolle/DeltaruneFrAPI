@@ -75,6 +75,7 @@ namespace DeltaruneFrBackEnd.Controllers
             }
         }
 
+        [AllowAnonymous]
         // GET api/Chapitre/
         [HttpGet("Chapitre")]
         public async Task<ActionResult<IEnumerable<Chapitre>>> GetChapitres()

@@ -2,6 +2,6 @@
 {
     public class Chapitre
     {
-        public int numero { get; set; }
+        public int chapitre { get; set; }
     }
 }

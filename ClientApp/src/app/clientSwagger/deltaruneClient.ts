@@ -579,7 +579,7 @@ export interface IStaff {
 }
 
 export class Chapitre implements IChapitre {
-    numero!: number;
+    chapitre!: number;
 
     constructor(data?: IChapitre) {
         if (data) {
@@ -592,7 +592,7 @@ export class Chapitre implements IChapitre {
 
     init(_data?: any) {
         if (_data) {
-            this.numero = _data["numero"];
+            this.chapitre = _data["chapitre"];
         }
     }
 
@@ -605,13 +605,13 @@ export class Chapitre implements IChapitre {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["numero"] = this.numero;
+        data["chapitre"] = this.chapitre;
         return data;
     }
 }
 
 export interface IChapitre {
-    numero: number;
+    chapitre: number;
 }
 
 export class Tokens implements ITokens {
