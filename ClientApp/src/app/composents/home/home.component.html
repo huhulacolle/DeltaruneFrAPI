@@ -1,4 +1,26 @@
 <br><br>
+<div class="container">
+  <ng-container *ngFor="let p of staffs; let i = index">
+    <div class="row align-items-start" *ngIf="(i%3)==0">
+      <div class="col" *ngFor="let staff of staffs.slice(i, i+3)">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"> </h5>
+            <h6 class="card-subtitle mb-2"> Chapitre </h6>
+            <h6 class="card-subtitle mb-2" *ngIf="staff.card ;else nocard">{{staff.card}} </h6>
+            <ng-template #nocard> <h6 class="card-subtitle mb-2 text-muted">aucune card</h6> </ng-template>
+            <p class="card-subtitle mb-2" *ngIf="staff.description ;else nodesc"> {{staff.description}} </p>
+            <ng-template #nodesc> <h6 class="card-subtitle mb-2 text-muted">aucune description</h6> </ng-template>
+            <p class="card-test">Lien : <a href={{staff.lien}} target="_blank"> {{staff.nomLien}} </a> </p>
+            <a href="#" class="card-link text-muted">Modifier (bientôt) </a>
+            <a href="#" class="card-link link-danger">Supprimer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<!--
 <ul class="list-group">
   <form (ngSubmit)="setStaff()">
     nom :
@@ -18,30 +40,4 @@
     <br>
     <input type="submit" class="btn btn-primary btn-block mb-4">
   </form>
-</ul>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">nom</th>
-      <th scope="col">photo</th>
-      <th scope="col">description</th>
-      <th scope="col">card</th>
-      <th scope="col">lien</th>
-      <th scope="col">nomLien</th>
-      <th scope="col">chapitre</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let staff of staffs">
-      <td> {{staff.nom}} </td>
-      <td> {{staff.photo}} </td>
-      <td> {{staff.description}} </td>
-      <td> {{staff.card}} </td>
-      <td> {{staff.lien}} </td>
-      <td> {{staff.nomLien}} </td>
-      <td> {{staff.idChapitre}} </td>
-    </tr>
-  </tbody>
-</table>
-
+</ul> -->

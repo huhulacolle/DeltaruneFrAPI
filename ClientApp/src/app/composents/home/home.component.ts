@@ -47,6 +47,14 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  deleteStaff(id: number): void {
+    this.deltaruneService.deleteStaff(id).subscribe(
+      () => {
+        console.log("salut");
+      }
+    )
+  }
+
   verifSession(): void {
     const helper = new JwtHelperService();
     const token = localStorage.getItem('token')?.toString();

@@ -519,6 +519,7 @@ export class UserdeltaruneClient {
 }
 
 export class Staff implements IStaff {
+    id!: number;
     nom!: string;
     photo!: string;
     description?: string | undefined;
@@ -538,6 +539,7 @@ export class Staff implements IStaff {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.nom = _data["nom"];
             this.photo = _data["photo"];
             this.description = _data["description"];
@@ -557,6 +559,7 @@ export class Staff implements IStaff {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
         data["nom"] = this.nom;
         data["photo"] = this.photo;
         data["description"] = this.description;
@@ -569,6 +572,7 @@ export class Staff implements IStaff {
 }
 
 export interface IStaff {
+    id: number;
     nom: string;
     photo: string;
     description?: string | undefined;
