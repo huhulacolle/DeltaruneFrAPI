@@ -1,7 +1,6 @@
-import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FileResponse, Staff, StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { Chapitre, FileResponse, Staff, StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +22,10 @@ export class DeltaruneService {
 
   public getAllStaff(): Observable<Staff[]> {
     return this.staff.getAllStaff();
+  }
+
+  public getChapitres(): Observable<Chapitre[]> {
+    return this.staff.getChapitres();
   }
 
   deleteStaff(id: number): Observable<FileResponse | null> {

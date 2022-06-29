@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Staff } from 'src/app/clientSwagger/deltaruneClient';
+import { Chapitre, Staff } from 'src/app/clientSwagger/deltaruneClient';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
 
 @Component({
@@ -17,9 +17,9 @@ export class HomeComponent implements OnInit {
   card: string | undefined = undefined;
   lien: string | undefined = undefined;
   nomLien: string | undefined = undefined;
-  chapitre: number = 0;
 
   staffs: Staff[] = [];
+  listChapter: number[] = [];
 
   constructor(
     private deltaruneService: DeltaruneService,
@@ -29,12 +29,24 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.verifSession();
     this.getAllStaff();
+    this.getChapitres();
   }
 
   setStaff(): void {
-    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, this.chapitre).subscribe(
+    const chapitre = parseInt((<HTMLInputElement>document.getElementById('chapitre')).value);
+    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, chapitre).subscribe(
       () => {
         this.getAllStaff();
+      }
+    )
+  }
+
+  getChapitres(): void {
+    this.deltaruneService.getChapitres().subscribe(
+      data => {
+        for (let i = 1; i <= data[0].chapitre; i++) {
+          this.listChapter.push(i)
+        }
       }
     )
   }
@@ -50,7 +62,7 @@ export class HomeComponent implements OnInit {
   deleteStaff(id: number): void {
     this.deltaruneService.deleteStaff(id).subscribe(
       () => {
-        console.log("salut");
+        this.getAllStaff();
       }
     )
   }
