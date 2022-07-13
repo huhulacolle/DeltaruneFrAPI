@@ -1,25 +1,34 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DeltaruneFrBackEnd.Controllers
 {
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IJWTManager _jWTManager;
-        private readonly ITestRepository _testRepository;
 
-        public UserController(IJWTManager jWTManager, ITestRepository testRepository)
+        public UserController(IJWTManager jWTManager)
         {
             _jWTManager = jWTManager;
-            _testRepository = testRepository;
         }
 
-/*        [HttpPost]
+        [HttpPost]
         [Route("inscription")]
         public async Task<IActionResult> SetAccount(User userdata)
         {
+            Request.Headers.TryGetValue("Authorization", out var BearerToken);
+
+            string token = BearerToken.ToString().Split("Bearer")[1].Remove(0, 1);
+
+            string name = new JwtSecurityTokenHandler().ReadJwtToken(token).Payload.Claims.AsList()[0].Value;
+
+            if (name.ToLower() != "admin")
+            {
+                return Unauthorized();
+            }
+
             try
             {
                 await _jWTManager.CreateAccount(userdata);
@@ -29,8 +38,9 @@ namespace DeltaruneFrBackEnd.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }*/
+        }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("connexion")]
         public ActionResult<Tokens> GetAccount(User usersdata)
@@ -43,30 +53,6 @@ namespace DeltaruneFrBackEnd.Controllers
             }
 
             return Ok(token);
-        }
-
-        [HttpGet]
-        [Route("test")]
-        public ActionResult<string> Test()
-        {
-            return Ok("ok");
-        }
-
-        [HttpGet]
-        [Route("test2")]
-        public async Task<ActionResult<IEnumerable<Chapitre>>> TestSQL()
-        {
-            try
-            {
-                var test = await _testRepository.TestSQL();
-                return Ok(test);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.InnerException);
-                return NotFound(e.Message);
-            }
-
         }
     }
 }

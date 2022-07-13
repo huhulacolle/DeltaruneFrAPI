@@ -14,6 +14,7 @@
 
         public async Task CreateAccount(User user)
         {
+            GetAllAcount();
 
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);
@@ -22,9 +23,13 @@
             dictionary.Add("@mdp", BCrypt.Net.BCrypt.HashPassword(user.mdp));
             parameters.AddDynamicParams(dictionary);
 
-            string sql = "INSERT INTO user (nom, mdp) VALUES (@nom, @mdp)";
-            using IDbConnection connec = defaultSqlConnectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            if (UsersRecords.Any(x => x.nom.ToLower() == user.nom.ToLower() && BCrypt.Net.BCrypt.Verify(user.mdp, x.mdp)))
+            {
+                string sql = "INSERT INTO user (nom, mdp) VALUES (@nom, @mdp)";
+                using IDbConnection connec = defaultSqlConnectionFactory.Create();
+                await connec.QueryAsync(sql, parameters);
+            }
+
         }
 
         public Tokens Authenticate(User users)
