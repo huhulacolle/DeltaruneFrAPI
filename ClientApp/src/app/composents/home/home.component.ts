@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Chapitre, Staff } from 'src/app/clientSwagger/deltaruneClient';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
+import { VerifaccountService } from 'src/app/services/verifaccount.service';
 
 @Component({
   selector: 'app-home',
@@ -23,11 +22,11 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private deltaruneService: DeltaruneService,
-    private router: Router
+    private verif: VerifaccountService
   ) { }
 
   ngOnInit(): void {
-    this.verifSession();
+    this.verif.verifSession();
     this.getAllStaff();
     this.getChapitres();
   }
@@ -66,15 +65,4 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-
-  verifSession(): void {
-    const helper = new JwtHelperService();
-    const token = localStorage.getItem('token')?.toString();
-
-    if (!token && helper.isTokenExpired(token)) {
-      this.router.navigateByUrl('/');
-    }
-
-  }
-
 }

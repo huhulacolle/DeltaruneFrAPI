@@ -32,8 +32,4 @@ export class DeltaruneService {
     return this.staff.deleteStaff(id);
   }
 
-  public test(): Observable<string> {
-    return this.user.test();
-  }
-
 }
