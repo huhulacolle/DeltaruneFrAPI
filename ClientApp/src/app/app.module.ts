@@ -10,12 +10,14 @@ import { API_BASE_URL, StaffdeltaruneClient, UserdeltaruneClient } from './clien
 import { HomeComponent } from './composents/home/home.component';
 import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { EditComponent } from './composents/edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -23,7 +25,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'home', component: HomeComponent}
+      { path: 'home', component: HomeComponent},
+      { path: 'edit', component: EditComponent}
     ])
   ],
   providers: [
