@@ -412,7 +412,7 @@ export class StaffdeltaruneClient {
     }
 
     getStaffByChapter(id: number): Observable<Staff[]> {
-        let url_ = this.baseUrl + "/api/Staff/Chapter/{id}";
+        let url_ = this.baseUrl + "/api/Staff/Chapitre/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
