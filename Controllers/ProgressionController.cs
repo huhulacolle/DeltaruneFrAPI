@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DeltaruneFrBackEnd.Controllers
 {
     [Authorize]
-    [Route("api/Chapitre")]
+    [Route("api/Progression")]
     [ApiController]
     public class ProgressionController : ControllerBase
     {

@@ -27,7 +27,7 @@ export class ProgressiondeltaruneClient {
     }
 
     getProgression(): Observable<Progression[]> {
-        let url_ = this.baseUrl + "/api/Chapitre";
+        let url_ = this.baseUrl + "/api/Progression";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
