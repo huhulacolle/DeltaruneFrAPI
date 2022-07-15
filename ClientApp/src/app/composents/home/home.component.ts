@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, chapitre)
     .subscribe({
       next: () => { this.getAllStaff(); },
-      error: (error) => { console.error(error);}
+      error: (error) => console.error(error)
     })
   }
 
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
           this.listChapter.push(i)
         }
       },
-      error: (error) => { console.error(error);}
+      error: (error) => console.error(error)
     })
   }
 
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
       next: (data) => {
         this.staffs = data;
       },
-      error: (error) => { console.error(error);}
+      error: (error) => console.error(error)
     })
   }
 
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
     this.deltaruneService.deleteStaff(id)
     .subscribe({
       next: () => { this.getAllStaff(); },
-      error: (error) => { console.error(error);}
+      error: (error) => console.error(error)
     })
   }
 }

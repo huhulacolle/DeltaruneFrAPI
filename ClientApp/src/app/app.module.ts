@@ -26,7 +26,7 @@ import { EditComponent } from './composents/edit/edit.component';
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent},
-      { path: 'edit', component: EditComponent}
+      { path: 'edit/:id', component: EditComponent}
     ])
   ],
   providers: [

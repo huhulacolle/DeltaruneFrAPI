@@ -14,6 +14,7 @@ export class VerifaccountService {
     const token = localStorage.getItem('token')?.toString();
 
     if (!token && helper.isTokenExpired(token)) {
+      localStorage.clear();
       this.router.navigateByUrl('/');
     }
 

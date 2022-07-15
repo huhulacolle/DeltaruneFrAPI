@@ -30,6 +30,19 @@
             dictionary.Add("@id", id);
             parameters.AddDynamicParams(dictionary);
 
+            string sql = "SELECT * FROM staff WHERE id = @id";
+
+            using IDbConnection connec = _connectionFactory.Create();
+            return await connec.QueryAsync<Staff>(sql, parameters);
+        }
+        public async Task<IEnumerable<Staff>> GetStaffByChapter(int id)
+        {
+            var dictionary = new Dictionary<string, object>();
+            var parameters = new DynamicParameters(dictionary);
+
+            dictionary.Add("@id", id);
+            parameters.AddDynamicParams(dictionary);
+
             string sql = "SELECT * FROM staff WHERE idChapitre = @id ORDER BY nom";
 
             using IDbConnection connec = _connectionFactory.Create();

@@ -35,12 +35,21 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // GET api/Staff/:id
-        [AllowAnonymous]
+        // GET api/:id
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Staff>>> GetStaffByID(int id)
+        public async Task<ActionResult<IEnumerable<Staff>>> GetStaffById(int id)
         {
             IEnumerable<Staff> result = await _staffRepository.GetStaffById(id);
+
+            return Ok(result);
+        }
+
+        // GET api/Staff/Chapter/:id
+        [AllowAnonymous]
+        [HttpGet("Chapter/{id}")]
+        public async Task<ActionResult<IEnumerable<Staff>>> GetStaffByChapter(int id)
+        {
+            IEnumerable<Staff> result = await _staffRepository.GetStaffByChapter(id);
 
             return Ok(result);
         }

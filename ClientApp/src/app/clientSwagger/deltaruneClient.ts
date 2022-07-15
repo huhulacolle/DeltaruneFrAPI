@@ -353,7 +353,7 @@ export class StaffdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getStaffByID(id: number): Observable<Staff[]> {
+    getStaffById(id: number): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Staff/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -369,11 +369,11 @@ export class StaffdeltaruneClient {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetStaffByID(response_);
+            return this.processGetStaffById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetStaffByID(response_ as any);
+                    return this.processGetStaffById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<Staff[]>;
                 }
@@ -382,7 +382,65 @@ export class StaffdeltaruneClient {
         }));
     }
 
-    protected processGetStaffByID(response: HttpResponseBase): Observable<Staff[]> {
+    protected processGetStaffById(response: HttpResponseBase): Observable<Staff[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(Staff.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getStaffByChapter(id: number): Observable<Staff[]> {
+        let url_ = this.baseUrl + "/api/Staff/Chapter/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetStaffByChapter(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetStaffByChapter(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<Staff[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<Staff[]>;
+        }));
+    }
+
+    protected processGetStaffByChapter(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
