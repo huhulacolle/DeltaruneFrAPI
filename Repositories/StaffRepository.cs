@@ -56,6 +56,28 @@
             using IDbConnection connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
+        public async Task EditStaff(Staff staff)
+        {
+            var dictionary = new Dictionary<string, object>();
+            var parameters = new DynamicParameters(dictionary);
+
+            dictionary.Add("@id", staff.id);
+            dictionary.Add("@nom", staff.nom);
+            dictionary.Add("@photo", staff.photo);
+            dictionary.Add("@description", staff.description);
+            dictionary.Add("@card", staff.card);
+            dictionary.Add("@lien", staff.lien);
+            dictionary.Add("@nomLien", staff.nomLien);
+            dictionary.Add("@idChapitre", staff.idChapitre);
+            parameters.AddDynamicParams(dictionary);
+
+            string sql = @"UPDATE staff 
+                        SET nom = @nom, photo = @photo,description = @description, card = @card, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
+                        WHERE id = @id";
+
+            using IDbConnection connec = _connectionFactory.Create();
+            await connec.QueryAsync(sql, parameters);
+        }
         public async Task DeleteStaff(int id)
         {
             var dictionary = new Dictionary<string, object>();

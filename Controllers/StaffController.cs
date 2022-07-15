@@ -45,13 +45,28 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // POST api/Staff/
+        // POST api/Staff
         [HttpPost]
         public async Task<ActionResult> SetStaff(Staff staff)
         {
             try
             {
                 await _staffRepository.SetStaff(staff);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        // PUT api/Staff
+        [HttpPut]
+        public async Task<ActionResult> EditStaff(Staff staff)
+        {
+            try
+            {
+                await _staffRepository.EditStaff(staff);
                 return Ok();
             }
             catch (Exception e)

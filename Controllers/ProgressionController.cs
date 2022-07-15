@@ -15,7 +15,7 @@ namespace DeltaruneFrBackEnd.Controllers
             _progressionRepository = progressionRepository;
         }
 
-        [AllowAnonymous]
+        // GET api/Chapitre
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Progression>>> GetProgression()
         {
