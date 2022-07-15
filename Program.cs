@@ -31,7 +31,7 @@ builder.Services.AddCors();
 
 builder.Services.AddSwaggerDocument();
 
-builder.Services.AddScoped<ITestRepository, TestRepository>();
+builder.Services.AddScoped<IProgressionRepository, ProgressionRepository>();
 
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 
