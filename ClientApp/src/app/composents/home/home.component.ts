@@ -33,36 +33,40 @@ export class HomeComponent implements OnInit {
 
   setStaff(): void {
     const chapitre = parseInt((<HTMLInputElement>document.getElementById('chapitre')).value);
-    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, chapitre).subscribe(
-      () => {
-        this.getAllStaff();
-      }
-    )
+    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, chapitre)
+    .subscribe({
+      next: () => { this.getAllStaff(); },
+      error: (error) => { console.error(error);}
+    })
   }
 
   getChapitres(): void {
-    this.deltaruneService.getChapitres().subscribe(
-      data => {
+    this.deltaruneService.getChapitres()
+    .subscribe({
+      next: (data) => {
         for (let i = 1; i <= data[0].chapitre; i++) {
           this.listChapter.push(i)
         }
-      }
-    )
+      },
+      error: (error) => { console.error(error);}
+    })
   }
 
   getAllStaff(): void {
-    this.deltaruneService.getAllStaff().subscribe(
-      data => {
+    this.deltaruneService.getAllStaff()
+    .subscribe({
+      next: (data) => {
         this.staffs = data;
-      }
-    )
+      },
+      error: (error) => { console.error(error);}
+    })
   }
 
   deleteStaff(id: number): void {
-    this.deltaruneService.deleteStaff(id).subscribe(
-      () => {
-        this.getAllStaff();
-      }
-    )
+    this.deltaruneService.deleteStaff(id)
+    .subscribe({
+      next: () => { this.getAllStaff(); },
+      error: (error) => { console.error(error);}
+    })
   }
 }
