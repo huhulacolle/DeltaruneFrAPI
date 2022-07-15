@@ -3,5 +3,6 @@
     public interface IProgressionRepository
     {
         public Task<IEnumerable<Progression>> GetProgressionAsync();
+        public Task EditProgression(Progression progression);
     }
 }

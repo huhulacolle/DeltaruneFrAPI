@@ -24,5 +24,20 @@ namespace DeltaruneFrBackEnd.Controllers
 
             return Ok(result);
         }
+
+        // PUT api/Progression
+        [HttpPut]
+        public async Task<ActionResult> EditProgression(Progression progression)
+        {
+            try
+            {
+                await _progressionRepository.EditProgression(progression);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
