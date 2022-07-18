@@ -33,7 +33,9 @@
             parameters.AddDynamicParams(dictionary);
 
             string sql = @"UPDATE progression 
-                        SET chapitre = @chapitre, textures = @textures, modif_code = @modif_code, traduction = @traduction, beta = @beta, fini = @fini
+                        SET chapitre = ifnull(@chapitre, chapitre), textures = ifnull(@textures, textures), 
+                        modif_code = ifnull(@modif_code, modif_code), traduction = ifnull(@traduction, traduction), beta = ifnull(@beta, beta), 
+                        fini = ifnull(@fini, fini)
                         WHERE id = @id";
 
             using IDbConnection connec = defaultSqlConnectionFactory.Create();
