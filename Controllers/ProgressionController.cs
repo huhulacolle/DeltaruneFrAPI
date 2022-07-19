@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace DeltaruneFrBackEnd.Controllers
 {
@@ -23,6 +24,31 @@ namespace DeltaruneFrBackEnd.Controllers
             IEnumerable<Progression> result = await _progressionRepository.GetProgressionAsync();
 
             return Ok(result);
+        }
+
+        // GET api/Progression
+        [AllowAnonymous]
+        [HttpGet("test")]
+        public async Task<IActionResult> GetProgressionJson()
+        {
+            try
+            {
+                IEnumerable<Progression> result = await _progressionRepository.GetProgressionAsync();
+
+                /*string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson", "Progression.json");*/
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson");
+
+                string progressionJson = JsonSerializer.Serialize(result);
+
+                /*System.IO.File.WriteAllText(path, progressionJson);*/
+
+                return Ok(Directory.Exists(path));
+            }
+            catch (Exception e) 
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT api/Progression
