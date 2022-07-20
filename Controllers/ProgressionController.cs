@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-
-namespace DeltaruneFrBackEnd.Controllers
+﻿namespace DeltaruneFrBackEnd.Controllers
 {
     [Authorize]
     [Route("api/Progression")]
@@ -31,19 +27,30 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet("test")]
         public async Task<IActionResult> GetProgressionJson()
         {
+            DotNetEnv.Env.Load();
             try
             {
                 IEnumerable<Progression> result = await _progressionRepository.GetProgressionAsync();
 
-                /*string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson", "Progression.json");*/
-
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson");
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson", "Progression.json");
 
                 string progressionJson = JsonSerializer.Serialize(result);
 
-                /*System.IO.File.WriteAllText(path, progressionJson);*/
+                System.IO.File.WriteAllText(path, progressionJson);
 
-                return Ok(Directory.Exists(path));
+                string host = Environment.GetEnvironmentVariable("HOST");
+                string user = Environment.GetEnvironmentVariable("USER");
+                string mdp = Environment.GetEnvironmentVariable("MDP");
+
+                FtpClient client = new(host, user, mdp);
+
+                await client.AutoConnectAsync();
+
+                await client.UploadFileAsync(path, "/public_html/Progression.json", FtpRemoteExists.Overwrite, false, FtpVerify.Retry);
+
+                await client.DisconnectAsync();
+
+                return Ok("fini");
             }
             catch (Exception e) 
             {
