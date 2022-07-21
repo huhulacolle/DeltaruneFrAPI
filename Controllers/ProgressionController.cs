@@ -36,7 +36,7 @@
 
                 string progressionJson = JsonSerializer.Serialize(result);
 
-                System.IO.File.WriteAllText(path, progressionJson);
+                await System.IO.File.WriteAllTextAsync(path, progressionJson);
 
                 string host = Environment.GetEnvironmentVariable("HOST");
                 string user = Environment.GetEnvironmentVariable("USER");
@@ -46,7 +46,7 @@
 
                 await client.AutoConnectAsync();
 
-                await client.UploadFileAsync(path, "/public_html/Progression.json", FtpRemoteExists.Overwrite, false, FtpVerify.Retry);
+                await client.UploadFileAsync(path, "/public_html/Progression.json", FtpRemoteExists.Overwrite, true, FtpVerify.Retry);
 
                 await client.DisconnectAsync();
 
