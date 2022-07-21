@@ -1,0 +1,28 @@
+<br>
+<app-navbar></app-navbar>
+<br>
+<div style="text-align: center;" class="display-6">
+  <label style="color:white">Textures :</label>
+  <progress style="color: yellow" max="100" value="{{progress.textures}}"></progress> {{progress.textures}} %
+</div>
+
+<br>
+<div style="text-align: center;" class="display-6">
+  <label style="color:white" >Modifications du code :</label>
+  <progress style="color: yellow" max="100" value="{{progress.modif_code}}"></progress> {{progress.modif_code}} %
+</div>
+<br>
+<div style="text-align: center;" class="display-6">
+  <label style="color:white" >Traduction :</label>
+  <progress style="color: yellow" max="100" value="{{progress.traduction}}"></progress> {{progress.traduction}} %
+</div>
+<br>
+<div style="text-align: center;" class="display-6">
+  <label style="color:white" >Bêta-test :</label>
+  <progress style="color: yellow" max="100" value="{{progress.beta}}"></progress> {{progress.beta}} %
+</div>
+
+<div class="text-center">
+  <button class="btn btn-light" disabled>Modifier</button>
+  <button class="btn btn-light" disabled>Modifier et envoyer</button>
+</div>

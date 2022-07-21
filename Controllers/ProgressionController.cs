@@ -42,7 +42,7 @@
                 string user = Environment.GetEnvironmentVariable("USER");
                 string mdp = Environment.GetEnvironmentVariable("MDP");
 
-                FtpClient client = new(host, user, mdp);
+                using var client = new FtpClient(host, new System.Net.NetworkCredential { UserName = user, Password = mdp } );
 
                 await client.AutoConnectAsync();
 

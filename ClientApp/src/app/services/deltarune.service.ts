@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
-import { Chapitre, FileResponse, Staff, StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ export class DeltaruneService {
 
   constructor(
     private user: UserdeltaruneClient,
-    private staff: StaffdeltaruneClient
+    private staff: StaffdeltaruneClient,
+    private progression: ProgressiondeltaruneClient
   ) { }
 
   public getAccount(user: string, mdp: string): Observable<Tokens> {
@@ -36,8 +37,12 @@ export class DeltaruneService {
     return this.staff.getChapitres();
   }
 
-  deleteStaff(id: number): Observable<FileResponse | null> {
+  public deleteStaff(id: number): Observable<FileResponse | null> {
     return this.staff.deleteStaff(id);
+  }
+
+  public getProgression(): Observable<Progression[]> {
+    return this.progression.getProgression();
   }
 
 }

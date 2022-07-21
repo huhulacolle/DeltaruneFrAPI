@@ -6,18 +6,22 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './composents/login/login.component';
-import { API_BASE_URL, StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
+import { API_BASE_URL, ProgressiondeltaruneClient, StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
 import { HomeComponent } from './composents/home/home.component';
 import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { EditComponent } from './composents/edit/edit.component';
+import { NavbarComponent } from './composents/navbar/navbar.component';
+import { ProgressionComponent } from './composents/progression/progression.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    EditComponent
+    EditComponent,
+    NavbarComponent,
+    ProgressionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,12 +30,14 @@ import { EditComponent } from './composents/edit/edit.component';
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent},
-      { path: 'edit/:id', component: EditComponent}
+      { path: 'edit/:id', component: EditComponent},
+      { path: 'progression', component: ProgressionComponent}
     ])
   ],
   providers: [
     UserdeltaruneClient,
     StaffdeltaruneClient,
+    ProgressiondeltaruneClient,
     {
 			provide: APP_INITIALIZER,
 			useFactory: apiUrlServiceFactory,
