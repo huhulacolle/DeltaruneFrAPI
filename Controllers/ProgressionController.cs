@@ -28,23 +28,32 @@
         public async Task<IActionResult> GetProgressionJson()
         {
             DotNetEnv.Env.Load();
+
+            IEnumerable<Progression> result = await _progressionRepository.GetProgressionAsync();
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson", "Progression.json");
+
+            string progressionJson = JsonSerializer.Serialize(result);
+
             try
             {
-                IEnumerable<Progression> result = await _progressionRepository.GetProgressionAsync();
-
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson", "Progression.json");
-
-                string progressionJson = JsonSerializer.Serialize(result);
-
                 await System.IO.File.WriteAllTextAsync(path, progressionJson);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest(e.Message);
+            }
 
+            try
+            {
                 string host = Environment.GetEnvironmentVariable("HOST");
                 string user = Environment.GetEnvironmentVariable("USER");
                 string mdp = Environment.GetEnvironmentVariable("MDP");
 
                 using var client = new FtpClient(host, new System.Net.NetworkCredential { UserName = user, Password = mdp } );
 
-                await client.AutoConnectAsync();
+                await client.ConnectAsync();
 
                 await client.UploadFileAsync(path, "/public_html/Progression.json", FtpRemoteExists.Overwrite, true, FtpVerify.Retry);
 
@@ -54,6 +63,7 @@
             }
             catch (Exception e) 
             {
+                Console.WriteLine(e);
                 return BadRequest(e.Message);
             }
         }
