@@ -23,8 +23,7 @@
         }
 
         // GET api/Progression
-        [AllowAnonymous]
-        [HttpGet("test")]
+        [HttpGet("json")]
         public async Task<IActionResult> GetProgressionJson()
         {
             DotNetEnv.Env.Load();
@@ -50,16 +49,17 @@
                 string host = Environment.GetEnvironmentVariable("HOST");
                 string user = Environment.GetEnvironmentVariable("USER");
                 string mdp = Environment.GetEnvironmentVariable("MDP");
+                string url = Environment.GetEnvironmentVariable("URL");
 
                 using var client = new FtpClient(host, new System.Net.NetworkCredential { UserName = user, Password = mdp } );
 
                 await client.ConnectAsync();
 
-                await client.UploadFileAsync(path, "/public_html/Progression.json", FtpRemoteExists.Overwrite, true, FtpVerify.Retry);
+                await client.UploadFileAsync(path, url, FtpRemoteExists.Overwrite, true, FtpVerify.Retry);
 
                 await client.DisconnectAsync();
 
-                return Ok("fini");
+                return Ok();
             }
             catch (Exception e) 
             {

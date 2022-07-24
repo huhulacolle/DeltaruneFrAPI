@@ -132,7 +132,7 @@ export class ProgressiondeltaruneClient {
     }
 
     getProgressionJson(): Observable<FileResponse | null> {
-        let url_ = this.baseUrl + "/api/Progression/test";
+        let url_ = this.baseUrl + "/api/Progression/json";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {

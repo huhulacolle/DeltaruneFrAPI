@@ -10,6 +10,10 @@ import { DeltaruneService } from 'src/app/services/deltarune.service';
 export class ProgressionComponent implements OnInit {
 
   progress!: Progression;
+  error: string = "";
+  loadingEdit: boolean = false;
+  checkEdit: boolean = false;
+  listChapter: number[] = [];
 
   constructor(
     private deltaruneService: DeltaruneService
@@ -17,6 +21,19 @@ export class ProgressionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProgression();
+    this.getChapitres();
+  }
+
+  getChapitres(): void {
+    this.deltaruneService.getChapitres()
+    .subscribe({
+      next: (data) => {
+        for (let i = 1; i <= data[0].chapitre; i++) {
+          this.listChapter.push(i)
+        }
+      },
+      error: (error) => console.error(error)
+    })
   }
 
   getProgression(): void {
@@ -26,6 +43,22 @@ export class ProgressionComponent implements OnInit {
         this.progress = data[0];
       },
       error: (error) => console.error(error)
+    })
+  }
+
+  editProgression(): void {
+    this.progress.chapitre = parseInt((<HTMLInputElement>document.getElementById('chapitre')).value);
+    this.progress.fini = (<HTMLInputElement>document.getElementById('fini')).checked;
+    this.checkEdit = false;
+    this.loadingEdit = true;
+    this.deltaruneService.editProgression(this.progress)
+    .subscribe({
+      next: () => {
+        this.getChapitres();
+        this.loadingEdit = false;
+        this.checkEdit = true;
+      },
+      error : (error) => this.error = error
     })
   }
 

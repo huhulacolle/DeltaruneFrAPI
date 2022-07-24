@@ -45,4 +45,9 @@ export class DeltaruneService {
     return this.progression.getProgression();
   }
 
+  public editProgression(progression: Progression): Observable<any> {
+    progression.id = 1;
+    return this.progression.editProgression(progression);
+  }
+
 }
