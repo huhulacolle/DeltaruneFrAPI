@@ -35,7 +35,7 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // GET api/:id
+        // GET api/Staff/:id
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Staff>>> GetStaffById(int id)
         {
