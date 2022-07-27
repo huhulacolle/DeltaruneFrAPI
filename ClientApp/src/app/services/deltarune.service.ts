@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom, Observable } from 'rxjs';
-import { Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { Observable } from 'rxjs';
+import { Beta, BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,8 @@ export class DeltaruneService {
   constructor(
     private user: UserdeltaruneClient,
     private staff: StaffdeltaruneClient,
-    private progression: ProgressiondeltaruneClient
+    private progression: ProgressiondeltaruneClient,
+    private beta: BetadeltaruneClient
   ) { }
 
   public getAccount(user: string, mdp: string): Observable<Tokens> {
@@ -45,9 +46,29 @@ export class DeltaruneService {
     return this.progression.getProgression();
   }
 
-  public editProgression(progression: Progression): Observable<any> {
+  public editProgression(progression: Progression): Observable<FileResponse | null> {
     progression.id = 1;
     return this.progression.editProgression(progression);
+  }
+
+  public getAllBeta(): Observable<Beta[]> {
+    return this.beta.getAllBeta();
+  }
+
+  public deleteBeta(id: number): Observable<FileResponse | null> {
+    return this.beta.deleteBeta(id);
+  }
+
+  public setBeta(nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
+    return this.beta.setBeta(new Beta({id: 0, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
+  }
+
+  public editBeta(id: number, nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
+    return this.beta.editBeta(new Beta({id: id, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
+  }
+
+  public getBetaById(id: number): Observable<Beta[]> {
+    return this.beta.getBetaById(id);
   }
 
 }

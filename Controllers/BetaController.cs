@@ -54,7 +54,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         // POST api/Beta
         [HttpPost]
-        public async Task<ActionResult> SetStaff(Beta beta)
+        public async Task<ActionResult> SetBeta(Beta beta)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         // PUT api/Beta
         [HttpPut]
-        public async Task<ActionResult> EditStaff(Beta beta)
+        public async Task<ActionResult> EditBeta(Beta beta)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         // DELETE api/Beta
         [HttpDelete]
-        public async Task<ActionResult> DeleteStaff(int id)
+        public async Task<ActionResult> DeleteBeta(int id)
         {
             try
             {

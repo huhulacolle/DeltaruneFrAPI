@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Progression } from 'src/app/clientSwagger/deltaruneClient';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
+import { VerifaccountService } from 'src/app/services/verifaccount.service';
 
 @Component({
   selector: 'app-progression',
@@ -16,10 +17,12 @@ export class ProgressionComponent implements OnInit {
   listChapter: number[] = [];
 
   constructor(
-    private deltaruneService: DeltaruneService
+    private deltaruneService: DeltaruneService,
+    private verif: VerifaccountService
   ) { }
 
   ngOnInit(): void {
+    this.verif.verifSession();
     this.getProgression();
     this.getChapitres();
   }

@@ -6,13 +6,15 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './composents/login/login.component';
-import { API_BASE_URL, ProgressiondeltaruneClient, StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
+import { API_BASE_URL, BetadeltaruneClient, ProgressiondeltaruneClient, StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
 import { HomeComponent } from './composents/home/home.component';
 import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { EditComponent } from './composents/edit/edit.component';
 import { NavbarComponent } from './composents/navbar/navbar.component';
 import { ProgressionComponent } from './composents/progression/progression.component';
+import { BetaComponent } from './composents/beta/beta.component';
+import { EditBetaComponent } from './composents/edit-beta/edit-beta.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ProgressionComponent } from './composents/progression/progression.compo
     HomeComponent,
     EditComponent,
     NavbarComponent,
-    ProgressionComponent
+    ProgressionComponent,
+    BetaComponent,
+    EditBetaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +35,8 @@ import { ProgressionComponent } from './composents/progression/progression.compo
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent},
       { path: 'edit/:id', component: EditComponent},
+      { path: 'beta', component: BetaComponent},
+      { path: 'beta/:id', component: EditBetaComponent},
       { path: 'progression', component: ProgressionComponent}
     ])
   ],
@@ -38,6 +44,7 @@ import { ProgressionComponent } from './composents/progression/progression.compo
     UserdeltaruneClient,
     StaffdeltaruneClient,
     ProgressiondeltaruneClient,
+    BetadeltaruneClient,
     {
 			provide: APP_INITIALIZER,
 			useFactory: apiUrlServiceFactory,

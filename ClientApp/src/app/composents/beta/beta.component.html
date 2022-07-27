@@ -1,0 +1,57 @@
+<br>
+<app-navbar></app-navbar>
+<br>
+<form (ngSubmit)="setBeta()">
+  <div class="col d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">
+          <input [(ngModel)]="nom" name="nom" type="text" class="form-control" placeholder="Pseudo" required>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <input [(ngModel)]="photo" name="photo" class="form-control" type="text" placeholder="mario.gif">
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <select id="chapitre" class="form-control" required>
+            <option value="" disabled selected hidden>Chapitre</option>
+            <option *ngFor="let chap of listChapter" value={{chap}}>{{chap}}</option>
+          </select>
+        </h6>
+        <p class="card-text">
+          <input [(ngModel)]="description" name="description" type="text" class="form-control" placeholder="Description (non obligatoire)">
+        </p>
+        <p class="card-text">
+          <input [(ngModel)]="nomLien" name="nomLien" type="text" class="form-control" placeholder="nom du site (non obligatoire)">
+        </p>
+        <p class="card-text">
+          <input [(ngModel)]="lien" name="lien" type="text" class="form-control" placeholder="Lien (non obligatoire)">
+        </p>
+        <button type="submit" class="card-link text-center float-end">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</form>
+<br><br>
+<div class="container">
+  <ng-container *ngFor="let p of betas; let i = index">
+    <div class="row align-items-start" *ngIf="(i%3)==0">
+      <div class="col" *ngFor="let beta of betas.slice(i, i+3)">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"> </h5>
+            <h6 class="card-subtitle mb-2"> {{beta.nom}} </h6>
+            <h6 class="card-subtitle mb-2"> photo : {{beta.photo}} </h6>
+            <h6 class="card-subtitle mb-2"> Chapitre : {{beta.idChapitre}} </h6>
+            <p class="card-subtitle mb-2" *ngIf="beta.description ;else nodesc"> {{beta.description}} </p>
+            <ng-template #nodesc>
+              <h6 class="card-subtitle mb-2 text-muted">aucune description</h6>
+            </ng-template>
+            <p class="card-test">Lien : <a href={{beta.lien}} target="_blank"> {{beta.nomLien}} </a> </p>
+            <a routerLink="/beta/{{beta.id}}" class="card-link">Modifier</a>
+            <button class="card-link link-danger" (click)="deleteBeta(beta.idChapitre)" style="padding: 0; border: none; background: none;">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
