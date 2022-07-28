@@ -30,7 +30,7 @@
 
             IEnumerable<Progression> result = await _progressionRepository.GetProgressionAsync();
 
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson", "Progression.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson", "progression.json");
 
             string progressionJson = JsonSerializer.Serialize(result);
 
