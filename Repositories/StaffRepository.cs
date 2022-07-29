@@ -107,7 +107,7 @@
 
         public async Task<IEnumerable<Chapitre>> GetChapitres()
         {
-            string sql = "SELECT count(*) AS chapitre FROM chapitre;";
+            string sql = "SELECT numero AS chapitre FROM chapitre;";
 
             using IDbConnection connec = _connectionFactory.Create();
             return await connec.QueryAsync<Chapitre>(sql);
