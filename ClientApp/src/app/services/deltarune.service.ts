@@ -71,4 +71,9 @@ export class DeltaruneService {
     return this.beta.getBetaById(id);
   }
 
+  public getProgressionJson(): Observable<FileResponse | null> {
+    return this.progression.getProgressionJson();
+  }
+
+
 }

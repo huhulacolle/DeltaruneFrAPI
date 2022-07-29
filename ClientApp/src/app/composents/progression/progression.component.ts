@@ -65,4 +65,13 @@ export class ProgressionComponent implements OnInit {
     })
   }
 
+  getProgressionJson(): void {
+    this.deltaruneService.getProgressionJson()
+    .subscribe({
+      next: () => console.log("fini"),
+      error : (error) => this.error = error
+    })
+  }
+
+
 }
