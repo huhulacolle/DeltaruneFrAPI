@@ -48,7 +48,6 @@ export class BetaComponent implements OnInit {
     .subscribe({
       next: (data) => {
         this.betas = data;
-        console.log(this.betas);
       },
       error: (error) => console.error(error)
     })

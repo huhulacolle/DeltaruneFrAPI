@@ -54,23 +54,27 @@ export class ProgressionComponent implements OnInit {
     this.progress.fini = (<HTMLInputElement>document.getElementById('fini')).checked;
     this.checkEdit = false;
     this.loadingEdit = true;
-    this.deltaruneService.editProgression(this.progress)
+    const editProgression = this.deltaruneService.editProgression(this.progress)
     .subscribe({
       next: () => {
         this.getChapitres();
-        this.loadingEdit = false;
-        this.checkEdit = true;
+        editProgression.unsubscribe();
       },
       error : (error) => this.error = error
     })
+    this.getProgressionJson();
   }
 
   getProgressionJson(): void {
     this.deltaruneService.getProgressionJson()
     .subscribe({
-      next: () => console.log("fini"),
+      next: () => {
+        this.loadingEdit = false;
+        this.checkEdit = true;
+      },
       error : (error) => this.error = error
     })
+
   }
 
 
