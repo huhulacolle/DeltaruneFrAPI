@@ -16,7 +16,6 @@ namespace DeltaruneFrBackEnd.Controllers
             _staffRepository = staffRepository;
         }
 
-        // GET api/Staff/Angular
         [HttpGet("Angular")]
         public async Task<ActionResult<IEnumerable<Staff>>> GetAllStaff()
         {
@@ -25,7 +24,6 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // GET api/Staff/
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Staff>>> GetStaff()
@@ -35,7 +33,6 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // GET api/Staff/:id
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Staff>>> GetStaffById(int id)
         {
@@ -44,7 +41,6 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // GET api/Staff/Chapitre/:id
         [AllowAnonymous]
         [HttpGet("Chapitre/{id}")]
         public async Task<ActionResult<IEnumerable<Staff>>> GetStaffByChapter(int id)
@@ -54,7 +50,6 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // POST api/Staff
         [HttpPost]
         public async Task<ActionResult> SetStaff(Staff staff)
         {
@@ -69,7 +64,6 @@ namespace DeltaruneFrBackEnd.Controllers
             }
         }
 
-        // PUT api/Staff
         [HttpPut]
         public async Task<ActionResult> EditStaff(Staff staff)
         {

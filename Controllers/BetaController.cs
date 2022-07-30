@@ -14,7 +14,6 @@ namespace DeltaruneFrBackEnd.Controllers
             this.betaRepository = betaRepository;
         }
 
-        // GET api/Beta/Angular
         [HttpGet("Angular")]
         public async Task<ActionResult<IEnumerable<Beta>>> GetAllBeta()
         {
@@ -23,7 +22,6 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // GET api/Beta/
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Beta>>> GetBeta()
@@ -33,7 +31,6 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // GET api/Beta/:id
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Beta>>> GetBetaById(int id)
         {
@@ -42,7 +39,6 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // GET api/Beta/Chapitre/:id
         [AllowAnonymous]
         [HttpGet("Chapitre/{id}")]
         public async Task<ActionResult<IEnumerable<Beta>>> GetBetaByChapter(int id)
@@ -52,7 +48,6 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
-        // POST api/Beta
         [HttpPost]
         public async Task<ActionResult> SetBeta(Beta beta)
         {

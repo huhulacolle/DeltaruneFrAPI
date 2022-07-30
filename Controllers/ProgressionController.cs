@@ -12,7 +12,6 @@
             _progressionRepository = progressionRepository;
         }
 
-        // GET api/Progression
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Progression>>> GetProgression()
@@ -22,7 +21,6 @@
             return Ok(result);
         }
 
-        // GET api/Progression
         [HttpGet("json")]
         public async Task<IActionResult> GetProgressionJson()
         {
@@ -68,7 +66,6 @@
             }
         }
 
-        // PUT api/Progression
         [HttpPut]
         public async Task<ActionResult> EditProgression(Progression progression)
         {
