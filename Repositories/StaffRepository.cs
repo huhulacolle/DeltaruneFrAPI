@@ -112,5 +112,19 @@
             using IDbConnection connec = _connectionFactory.Create();
             return await connec.QueryAsync<Chapitre>(sql);
         }
+
+        public async Task EditChapitre(int chap)
+        {
+            var dictionary = new Dictionary<string, object>();
+            var parameters = new DynamicParameters(dictionary);
+
+            dictionary.Add("@chap", chap);
+            parameters.AddDynamicParams(dictionary);
+
+            string sql = "UPDATE chapitre SET numero = @chap WHERE id = 1";
+
+            using IDbConnection connec = _connectionFactory.Create();
+            await connec.QueryAsync(sql, parameters);
+        }
     }
 }

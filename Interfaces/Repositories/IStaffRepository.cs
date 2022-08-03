@@ -10,5 +10,6 @@
         public Task EditStaff(Staff staff);
         public Task DeleteStaff(int id);
         public Task<IEnumerable<Chapitre>> GetChapitres();
+        public Task EditChapitre(int chap);
     }
 }

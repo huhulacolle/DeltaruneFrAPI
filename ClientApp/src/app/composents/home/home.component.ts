@@ -22,11 +22,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private deltaruneService: DeltaruneService,
-    private verif: VerifaccountService
   ) { }
 
   ngOnInit(): void {
-    this.verif.verifSession();
     this.getAllStaff();
     this.getChapitres();
   }

@@ -38,6 +38,10 @@ export class DeltaruneService {
     return this.staff.getChapitres();
   }
 
+  public editChapitre(chap: number): Observable<FileResponse | null> {
+    return this.staff.editChapitre(chap);
+  }
+
   public deleteStaff(id: number): Observable<FileResponse | null> {
     return this.staff.deleteStaff(id);
   }
@@ -74,6 +78,5 @@ export class DeltaruneService {
   public getProgressionJson(): Observable<FileResponse | null> {
     return this.progression.getProgressionJson();
   }
-
 
 }

@@ -22,14 +22,12 @@ export class EditBetaComponent implements OnInit {
   listChapter: number[] = [];
 
   constructor(
-    private verif: VerifaccountService,
     private deltaruneService: DeltaruneService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.verif.verifSession();
     this.getBetaById();
   }
 

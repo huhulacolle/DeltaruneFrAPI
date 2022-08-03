@@ -103,6 +103,20 @@ namespace DeltaruneFrBackEnd.Controllers
             return Ok(result);
         }
 
+        [HttpPut("Chapitre")]
+        public async Task<IActionResult> EditChapitre(int chap)
+        {
+            try
+            {
+                await _staffRepository.EditChapitre(chap);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
     }
 }

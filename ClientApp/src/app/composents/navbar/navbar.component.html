@@ -9,3 +9,10 @@
     <a class="nav-link" routerLink="/progression">Progression</a>
   </li>
 </ul>
+<div class="text-center h3">
+  <button (click)="moins(chapitre)" class="buttonNumber">-</button>
+  Chapitre max : {{chapitre}}
+  <button (click)="plus(chapitre)" class="buttonNumber">+</button>
+  <br>
+  <h6>(faut refresh après)</h6>
+</div>
