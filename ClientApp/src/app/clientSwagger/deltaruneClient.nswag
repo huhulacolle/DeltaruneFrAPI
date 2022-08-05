@@ -14,7 +14,7 @@
       "className": "{controller}deltaruneClient",
       "moduleName": "",
       "namespace": "",
-      "typeScriptVersion": 2.7,
+      "typeScriptVersion": 4.3,
       "template": "Angular",
       "promiseType": "Promise",
       "httpClass": "HttpClient",

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiUrlService {
 
-  public apiUrl: string = "";
+  public apiUrl = "";
 
   load(): void {
     this.apiUrl = environment.url

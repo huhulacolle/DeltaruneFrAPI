@@ -12,8 +12,8 @@ export class EditComponent implements OnInit {
 
   id: number = parseInt(<string>this.route.snapshot.paramMap.get('id'));
 
-  nom: string = "";
-  photo: string = "";
+  nom = "";
+  photo = "";
   description: string | undefined = undefined;
   card: string | undefined = undefined;
   lien: string | undefined = undefined;

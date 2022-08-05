@@ -11,9 +11,9 @@ import { VerifaccountService } from 'src/app/services/verifaccount.service';
 export class ProgressionComponent implements OnInit {
 
   progress!: Progression;
-  error: string = "";
-  loadingEdit: boolean = false;
-  checkEdit: boolean = false;
+  error = "";
+  loadingEdit = false;
+  checkEdit = false;
   listChapter: number[] = [];
 
   constructor(

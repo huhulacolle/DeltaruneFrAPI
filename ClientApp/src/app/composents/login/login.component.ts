@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  nom: string = "";
-  mdp: string = "";
+  nom = "";
+  mdp = "";
 
   loading: boolean = false;
 

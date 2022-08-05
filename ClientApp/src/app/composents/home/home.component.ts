@@ -10,8 +10,8 @@ import { VerifaccountService } from 'src/app/services/verifaccount.service';
 })
 export class HomeComponent implements OnInit {
 
-  nom: string = "";
-  photo: string = "";
+  nom = "";
+  photo = "";
   description: string | undefined = undefined;
   card: string | undefined = undefined;
   lien: string | undefined = undefined;
