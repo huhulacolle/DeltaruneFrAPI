@@ -14,7 +14,7 @@
         {
             string sql = "SELECT * FROM progression";
 
-            using IDbConnection connec = defaultSqlConnectionFactory.Create();
+            using var connec = defaultSqlConnectionFactory.Create();
             return await connec.QueryAsync<Progression>(sql);
         }
 
@@ -38,7 +38,7 @@
                         fini = ifnull(@fini, fini)
                         WHERE id = @id";
 
-            using IDbConnection connec = defaultSqlConnectionFactory.Create();
+            using var connec = defaultSqlConnectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
 
         }

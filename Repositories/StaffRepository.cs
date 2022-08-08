@@ -12,14 +12,14 @@
         {
             string sql = "SELECT * FROM staff ORDER BY id DESC";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql);
         }
         public async Task<IEnumerable<Staff>> GetStaff()
         {
             string sql = "SELECT DISTINCT nom, photo, description, card, lien, nomLien FROM staff ORDER BY nom";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql);
         }
         public async Task<IEnumerable<Staff>> GetStaffById(int id)
@@ -32,7 +32,7 @@
 
             string sql = "SELECT * FROM staff WHERE id = @id";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql, parameters);
         }
         public async Task<IEnumerable<Staff>> GetStaffByChapter(int id)
@@ -45,7 +45,7 @@
 
             string sql = "SELECT * FROM staff WHERE idChapitre = @id ORDER BY nom";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Staff>(sql, parameters);
         }
 
@@ -66,7 +66,7 @@
             string sql = @"INSERT INTO staff (nom, photo, description, card, lien, nomLien, idChapitre) 
                             VALUES (@nom, @photo, @description, @card, @lien, @nomLien, @idChapitre)";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
         public async Task EditStaff(Staff staff)
@@ -88,7 +88,7 @@
                         SET nom = @nom, photo = @photo,description = @description, card = @card, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
                         WHERE id = @id";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
         public async Task DeleteStaff(int id)
@@ -101,7 +101,7 @@
 
             string sql = "DELETE FROM staff WHERE id = @id";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
 
@@ -109,7 +109,7 @@
         {
             string sql = "SELECT numero AS chapitre FROM chapitre;";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Chapitre>(sql);
         }
 
@@ -123,7 +123,7 @@
 
             string sql = "UPDATE chapitre SET numero = @chap WHERE id = 1";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
     }

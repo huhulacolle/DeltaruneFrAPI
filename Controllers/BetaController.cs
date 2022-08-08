@@ -17,7 +17,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet("Angular")]
         public async Task<ActionResult<IEnumerable<Beta>>> GetAllBeta()
         {
-            IEnumerable<Beta> result = await betaRepository.GetAllBetaAsync();
+            var result = await betaRepository.GetAllBetaAsync();
 
             return Ok(result);
         }
@@ -26,7 +26,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Beta>>> GetBeta()
         {
-            IEnumerable<Beta> result = await betaRepository.GetBeta();
+            var result = await betaRepository.GetBeta();
 
             return Ok(result);
         }
@@ -34,7 +34,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Beta>>> GetBetaById(int id)
         {
-            IEnumerable<Beta> result = await betaRepository.GetBetaById(id);
+            var result = await betaRepository.GetBetaById(id);
 
             return Ok(result);
         }
@@ -43,7 +43,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet("Chapitre/{id}")]
         public async Task<ActionResult<IEnumerable<Beta>>> GetBetaByChapter(int id)
         {
-            IEnumerable<Beta> result = await betaRepository.GetBetaByChapter(id);
+            var result = await betaRepository.GetBetaByChapter(id);
 
             return Ok(result);
         }

@@ -16,7 +16,7 @@
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Progression>>> GetProgression()
         {
-            IEnumerable<Progression> result = await _progressionRepository.GetProgressionAsync();
+            var result = await _progressionRepository.GetProgressionAsync();
 
             return Ok(result);
         }
@@ -26,7 +26,7 @@
         {
             DotNetEnv.Env.Load();
 
-            IEnumerable<Progression> result = await _progressionRepository.GetProgressionAsync();
+            var result = await _progressionRepository.GetProgressionAsync();
 
             string path = Path.Combine(Directory.GetCurrentDirectory(), "ProgressionJson", "progression.json");
 

@@ -19,7 +19,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet("Angular")]
         public async Task<ActionResult<IEnumerable<Staff>>> GetAllStaff()
         {
-            IEnumerable<Staff> result = await _staffRepository.GetAllStaff();
+            var result = await _staffRepository.GetAllStaff();
 
             return Ok(result);
         }
@@ -28,7 +28,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Staff>>> GetStaff()
         {
-            IEnumerable<Staff> result = await _staffRepository.GetStaff();
+            var result = await _staffRepository.GetStaff();
 
             return Ok(result);
         }
@@ -36,7 +36,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Staff>>> GetStaffById(int id)
         {
-            IEnumerable<Staff> result = await _staffRepository.GetStaffById(id);
+            var result = await _staffRepository.GetStaffById(id);
 
             return Ok(result);
         }
@@ -45,7 +45,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet("Chapitre/{id}")]
         public async Task<ActionResult<IEnumerable<Staff>>> GetStaffByChapter(int id)
         {
-            IEnumerable<Staff> result = await _staffRepository.GetStaffByChapter(id);
+            var result = await _staffRepository.GetStaffByChapter(id);
 
             return Ok(result);
         }
@@ -98,7 +98,7 @@ namespace DeltaruneFrBackEnd.Controllers
         [HttpGet("Chapitre")]
         public async Task<ActionResult<IEnumerable<Chapitre>>> GetChapitres()
         {
-            IEnumerable<Chapitre> result = await _staffRepository.GetChapitres();
+            var result = await _staffRepository.GetChapitres();
 
             return Ok(result);
         }

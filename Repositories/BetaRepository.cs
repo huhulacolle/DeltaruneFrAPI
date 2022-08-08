@@ -13,7 +13,7 @@
         {
             string sql = "SELECT * FROM beta ORDER BY id DESC";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Beta>(sql);
         }
 
@@ -27,7 +27,7 @@
 
             string sql = "DELETE FROM beta WHERE id = @id";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
 
@@ -49,7 +49,7 @@
                         SET nom = @nom, photo = @photo,description = @description, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
                         WHERE id = @id";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
 
@@ -57,7 +57,7 @@
         {
             string sql = "SELECT DISTINCT nom, photo, description, lien, nomLien FROM beta ORDER BY nom";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Beta>(sql);
         }
 
@@ -71,7 +71,7 @@
 
             string sql = "SELECT * FROM beta WHERE idChapitre = @id ORDER BY nom";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Beta>(sql, parameters);
         }
 
@@ -85,7 +85,7 @@
 
             string sql = "SELECT * FROM beta WHERE id = @id";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<Beta>(sql, parameters);
         }
 
@@ -105,7 +105,7 @@
             string sql = @"INSERT INTO beta (nom, photo, description, lien, nomLien, idChapitre) 
                             VALUES (@nom, @photo, @description, @lien, @nomLien, @idChapitre)";
 
-            using IDbConnection connec = _connectionFactory.Create();
+            using var connec = _connectionFactory.Create();
             await connec.QueryAsync(sql, parameters);
         }
     }
