@@ -39,7 +39,7 @@
                         WHERE id = @id";
 
             using var connec = defaultSqlConnectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, parameters);
 
         }
     }

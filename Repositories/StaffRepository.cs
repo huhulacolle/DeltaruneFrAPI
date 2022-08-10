@@ -67,7 +67,7 @@
                             VALUES (@nom, @photo, @description, @card, @lien, @nomLien, @idChapitre)";
 
             using var connec = _connectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, parameters);
         }
         public async Task EditStaff(Staff staff)
         {
@@ -89,7 +89,7 @@
                         WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, parameters);
         }
         public async Task DeleteStaff(int id)
         {
@@ -102,7 +102,7 @@
             string sql = "DELETE FROM staff WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, parameters);
         }
 
         public async Task<IEnumerable<Chapitre>> GetChapitres()
@@ -124,7 +124,7 @@
             string sql = "UPDATE chapitre SET numero = @chap WHERE id = 1";
 
             using var connec = _connectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, parameters);
         }
     }
 }

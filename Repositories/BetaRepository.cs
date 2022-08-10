@@ -28,7 +28,7 @@
             string sql = "DELETE FROM beta WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, parameters);
         }
 
         public async Task EditBeta(Beta beta)
@@ -50,7 +50,7 @@
                         WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, parameters);
         }
 
         public async Task<IEnumerable<Beta>> GetBeta()
@@ -106,7 +106,7 @@
                             VALUES (@nom, @photo, @description, @lien, @nomLien, @idChapitre)";
 
             using var connec = _connectionFactory.Create();
-            await connec.QueryAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, parameters);
         }
     }
 }
