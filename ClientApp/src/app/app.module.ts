@@ -7,14 +7,15 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './composents/login/login.component';
 import { API_BASE_URL, BetadeltaruneClient, ProgressiondeltaruneClient, StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
-import { HomeComponent } from './composents/home/home.component';
+import { HomeComponent } from './composents/traducteurs/home/home.component';
 import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { EditComponent } from './composents/edit/edit.component';
+import { EditComponent } from './composents/traducteurs/edit/edit.component';
 import { NavbarComponent } from './composents/navbar/navbar.component';
 import { ProgressionComponent } from './composents/progression/progression.component';
-import { BetaComponent } from './composents/beta/beta.component';
-import { EditBetaComponent } from './composents/edit-beta/edit-beta.component';
+import { BetaComponent } from './composents/beta-testeurs/beta/beta.component';
+import { EditBetaComponent } from './composents/beta-testeurs/edit-beta/edit-beta.component';
+import { NomVoixComponent } from './composents/voix/nom-voix/nom-voix.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EditBetaComponent } from './composents/edit-beta/edit-beta.component';
     NavbarComponent,
     ProgressionComponent,
     BetaComponent,
-    EditBetaComponent
+    EditBetaComponent,
+    NomVoixComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,7 +39,8 @@ import { EditBetaComponent } from './composents/edit-beta/edit-beta.component';
       { path: 'edit/:id', component: EditComponent},
       { path: 'beta', component: BetaComponent},
       { path: 'beta/:id', component: EditBetaComponent},
-      { path: 'progression', component: ProgressionComponent}
+      { path: 'progression', component: ProgressionComponent},
+      { path: 'voix', component: NomVoixComponent}
     ])
   ],
   providers: [
