@@ -1,13 +1,13 @@
-﻿namespace DeltaruneFrBackEnd.Infrastructures
+﻿namespace DeltaruneFrBackEnd.Repositories
 {
-    public class JWTManager : IJWTManager
+    public class JWTManagerRepository : IJWTManagerRepository
     {
 
         private readonly DefaultSqlConnectionFactory defaultSqlConnectionFactory;
 
         private IEnumerable<User>? UsersRecords;
 
-        public JWTManager(DefaultSqlConnectionFactory defaultSqlConnectionFactory)
+        public JWTManagerRepository(DefaultSqlConnectionFactory defaultSqlConnectionFactory)
         {
             this.defaultSqlConnectionFactory = defaultSqlConnectionFactory;
         }

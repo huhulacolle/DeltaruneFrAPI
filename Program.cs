@@ -39,7 +39,7 @@ builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 
 builder.Services.AddScoped<IBetaRepository, BetaRepository>();
 
-builder.Services.AddScoped<IJWTManager, JWTManager>();
+builder.Services.AddScoped<IJWTManagerRepository, JWTManagerRepository>();
 
 var app = builder.Build();
 

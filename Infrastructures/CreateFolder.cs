@@ -1,6 +1,6 @@
 ﻿namespace DeltaruneFrBackEnd.Infrastructures
 {
-    public class CreateFolder
+    public abstract class CreateFolder
     {
         public static void ProgressionFolder()
         {

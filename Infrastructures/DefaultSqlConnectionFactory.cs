@@ -2,14 +2,14 @@
 {
     public class DefaultSqlConnectionFactory
     {
-        public string connectionString { get; }
+        public string ConnectionString { get; }
         public DefaultSqlConnectionFactory(string connectionString)
         {
-            this.connectionString = connectionString;
+            this.ConnectionString = connectionString;
         }
         public IDbConnection Create()
         {
-            return new MySqlConnection(this.connectionString);
+            return new MySqlConnection(this.ConnectionString);
         }
     }
 }
