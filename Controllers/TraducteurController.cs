@@ -7,17 +7,17 @@ namespace DeltaruneFrBackEnd.Controllers
     [Authorize]
     [Route("api/Staff")]
     [ApiController]
-    public class StaffController : ControllerBase
+    public class TraducteurController : ControllerBase
     {
-        private readonly IStaffRepository _staffRepository;
+        private readonly ITraducteurRepository _staffRepository;
 
-        public StaffController(IStaffRepository staffRepository)
+        public TraducteurController(ITraducteurRepository staffRepository)
         {
             _staffRepository = staffRepository;
         }
 
         [HttpGet("Angular")]
-        public async Task<ActionResult<IEnumerable<Staff>>> GetAllStaff()
+        public async Task<ActionResult<IEnumerable<Traducteur>>> GetAllStaff()
         {
             var result = await _staffRepository.GetAllStaff();
 
@@ -26,7 +26,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Staff>>> GetStaff()
+        public async Task<ActionResult<IEnumerable<Traducteur>>> GetStaff()
         {
             var result = await _staffRepository.GetStaff();
 
@@ -34,7 +34,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Staff>>> GetStaffById(int id)
+        public async Task<ActionResult<IEnumerable<Traducteur>>> GetStaffById(int id)
         {
             var result = await _staffRepository.GetStaffById(id);
 
@@ -43,7 +43,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [AllowAnonymous]
         [HttpGet("Chapitre/{id}")]
-        public async Task<ActionResult<IEnumerable<Staff>>> GetStaffByChapter(int id)
+        public async Task<ActionResult<IEnumerable<Traducteur>>> GetStaffByChapter(int id)
         {
             var result = await _staffRepository.GetStaffByChapter(id);
 
@@ -51,7 +51,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> SetStaff(Staff staff)
+        public async Task<ActionResult> SetStaff(Traducteur staff)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> EditStaff(Staff staff)
+        public async Task<ActionResult> EditStaff(Traducteur staff)
         {
             try
             {
@@ -78,7 +78,6 @@ namespace DeltaruneFrBackEnd.Controllers
             }
         }
 
-        // DELETE api/Staff
         [HttpDelete]
         public async Task<ActionResult> DeleteStaff(int id)
         {
@@ -94,7 +93,6 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [AllowAnonymous]
-        // GET api/Chapitre/
         [HttpGet("Chapitre")]
         public async Task<ActionResult<IEnumerable<Chapitre>>> GetChapitres()
         {

@@ -567,7 +567,7 @@ export class ProgressiondeltaruneClient {
 }
 
 @Injectable()
-export class StaffdeltaruneClient {
+export class TraducteurdeltaruneClient {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -577,7 +577,7 @@ export class StaffdeltaruneClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "https://localhost:7046";
     }
 
-    getAllStaff(): Observable<Staff[]> {
+    getAllStaff(): Observable<Traducteur[]> {
         let url_ = this.baseUrl + "/api/Staff/Angular";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -596,14 +596,14 @@ export class StaffdeltaruneClient {
                 try {
                     return this.processGetAllStaff(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Staff[]>;
+                    return _observableThrow(e) as any as Observable<Traducteur[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Staff[]>;
+                return _observableThrow(response_) as any as Observable<Traducteur[]>;
         }));
     }
 
-    protected processGetAllStaff(response: HttpResponseBase): Observable<Staff[]> {
+    protected processGetAllStaff(response: HttpResponseBase): Observable<Traducteur[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -617,7 +617,7 @@ export class StaffdeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Staff.fromJS(item));
+                    result200!.push(Traducteur.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -632,7 +632,7 @@ export class StaffdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getStaff(): Observable<Staff[]> {
+    getStaff(): Observable<Traducteur[]> {
         let url_ = this.baseUrl + "/api/Staff";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -651,14 +651,14 @@ export class StaffdeltaruneClient {
                 try {
                     return this.processGetStaff(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Staff[]>;
+                    return _observableThrow(e) as any as Observable<Traducteur[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Staff[]>;
+                return _observableThrow(response_) as any as Observable<Traducteur[]>;
         }));
     }
 
-    protected processGetStaff(response: HttpResponseBase): Observable<Staff[]> {
+    protected processGetStaff(response: HttpResponseBase): Observable<Traducteur[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -672,7 +672,7 @@ export class StaffdeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Staff.fromJS(item));
+                    result200!.push(Traducteur.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -687,7 +687,7 @@ export class StaffdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    setStaff(staff: Staff): Observable<FileResponse | null> {
+    setStaff(staff: Traducteur): Observable<FileResponse | null> {
         let url_ = this.baseUrl + "/api/Staff";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -737,7 +737,7 @@ export class StaffdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    editStaff(staff: Staff): Observable<FileResponse | null> {
+    editStaff(staff: Traducteur): Observable<FileResponse | null> {
         let url_ = this.baseUrl + "/api/Staff";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -837,7 +837,7 @@ export class StaffdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getStaffById(id: number): Observable<Staff[]> {
+    getStaffById(id: number): Observable<Traducteur[]> {
         let url_ = this.baseUrl + "/api/Staff/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -859,14 +859,14 @@ export class StaffdeltaruneClient {
                 try {
                     return this.processGetStaffById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Staff[]>;
+                    return _observableThrow(e) as any as Observable<Traducteur[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Staff[]>;
+                return _observableThrow(response_) as any as Observable<Traducteur[]>;
         }));
     }
 
-    protected processGetStaffById(response: HttpResponseBase): Observable<Staff[]> {
+    protected processGetStaffById(response: HttpResponseBase): Observable<Traducteur[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -880,7 +880,7 @@ export class StaffdeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Staff.fromJS(item));
+                    result200!.push(Traducteur.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -895,7 +895,7 @@ export class StaffdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getStaffByChapter(id: number): Observable<Staff[]> {
+    getStaffByChapter(id: number): Observable<Traducteur[]> {
         let url_ = this.baseUrl + "/api/Staff/Chapitre/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -917,14 +917,14 @@ export class StaffdeltaruneClient {
                 try {
                     return this.processGetStaffByChapter(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Staff[]>;
+                    return _observableThrow(e) as any as Observable<Traducteur[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Staff[]>;
+                return _observableThrow(response_) as any as Observable<Traducteur[]>;
         }));
     }
 
-    protected processGetStaffByChapter(response: HttpResponseBase): Observable<Staff[]> {
+    protected processGetStaffByChapter(response: HttpResponseBase): Observable<Traducteur[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -938,7 +938,7 @@ export class StaffdeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Staff.fromJS(item));
+                    result200!.push(Traducteur.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -1293,17 +1293,16 @@ export interface IProgression {
     fini?: boolean | undefined;
 }
 
-export class Staff implements IStaff {
+export class Traducteur implements ITraducteur {
     id!: number;
     nom!: string;
     photo!: string;
     description?: string | undefined;
-    card?: string | undefined;
     lien?: string | undefined;
     nomLien?: string | undefined;
     idChapitre!: number;
 
-    constructor(data?: IStaff) {
+    constructor(data?: ITraducteur) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -1318,16 +1317,15 @@ export class Staff implements IStaff {
             this.nom = _data["nom"];
             this.photo = _data["photo"];
             this.description = _data["description"];
-            this.card = _data["card"];
             this.lien = _data["lien"];
             this.nomLien = _data["nomLien"];
             this.idChapitre = _data["idChapitre"];
         }
     }
 
-    static fromJS(data: any): Staff {
+    static fromJS(data: any): Traducteur {
         data = typeof data === 'object' ? data : {};
-        let result = new Staff();
+        let result = new Traducteur();
         result.init(data);
         return result;
     }
@@ -1338,7 +1336,6 @@ export class Staff implements IStaff {
         data["nom"] = this.nom;
         data["photo"] = this.photo;
         data["description"] = this.description;
-        data["card"] = this.card;
         data["lien"] = this.lien;
         data["nomLien"] = this.nomLien;
         data["idChapitre"] = this.idChapitre;
@@ -1346,12 +1343,11 @@ export class Staff implements IStaff {
     }
 }
 
-export interface IStaff {
+export interface ITraducteur {
     id: number;
     nom: string;
     photo: string;
     description?: string | undefined;
-    card?: string | undefined;
     lien?: string | undefined;
     nomLien?: string | undefined;
     idChapitre: number;

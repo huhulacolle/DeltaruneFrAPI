@@ -6,11 +6,11 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './composents/login/login.component';
-import { API_BASE_URL, BetadeltaruneClient, ProgressiondeltaruneClient, StaffdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
-import { HomeComponent } from './composents/traducteurs/home/home.component';
+import { API_BASE_URL, BetadeltaruneClient, ProgressiondeltaruneClient, TraducteurdeltaruneClient, UserdeltaruneClient } from './clientSwagger/deltaruneClient';
+import { HomeComponent } from './composents/home/home.component';
 import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { EditComponent } from './composents/traducteurs/edit/edit.component';
+import { EditComponent } from './composents/edit/edit.component';
 import { NavbarComponent } from './composents/navbar/navbar.component';
 import { ProgressionComponent } from './composents/progression/progression.component';
 import { BetaComponent } from './composents/beta-testeurs/beta/beta.component';
@@ -36,7 +36,7 @@ import { NomVoixComponent } from './composents/voix/nom-voix/nom-voix.component'
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent},
-      { path: 'edit/:id', component: EditComponent},
+      { path: 'edit/:equipe/:id', component: EditComponent},
       { path: 'beta', component: BetaComponent},
       { path: 'beta/:id', component: EditBetaComponent},
       { path: 'progression', component: ProgressionComponent},
@@ -45,7 +45,7 @@ import { NomVoixComponent } from './composents/voix/nom-voix/nom-voix.component'
   ],
   providers: [
     UserdeltaruneClient,
-    StaffdeltaruneClient,
+    TraducteurdeltaruneClient,
     ProgressiondeltaruneClient,
     BetadeltaruneClient,
     {

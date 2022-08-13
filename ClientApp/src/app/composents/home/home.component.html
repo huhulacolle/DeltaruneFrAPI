@@ -18,9 +18,6 @@
           </select>
         </h6>
         <p class="card-text">
-          <input [(ngModel)]="card" name="card" type="text" class="form-control" placeholder="Card (non obligatoire)">
-        </p>
-        <p class="card-text">
           <input [(ngModel)]="description" name="description" type="text" class="form-control" placeholder="Description (non obligatoire)">
         </p>
         <p class="card-text">
@@ -47,16 +44,12 @@
             <h6 class="card-subtitle mb-2"> {{staff.nom}} </h6>
             <h6 class="card-subtitle mb-2"> photo : {{staff.photo}} </h6>
             <h6 class="card-subtitle mb-2"> Chapitre : {{staff.idChapitre}} </h6>
-            <h6 class="card-subtitle mb-2" *ngIf="staff.card ;else nocard">{{staff.card}} </h6>
-            <ng-template #nocard>
-              <h6 class="card-subtitle mb-2 text-muted">aucune card</h6>
-            </ng-template>
             <p class="card-subtitle mb-2" *ngIf="staff.description ;else nodesc"> {{staff.description}} </p>
             <ng-template #nodesc>
               <h6 class="card-subtitle mb-2 text-muted">aucune description</h6>
             </ng-template>
             <p class="card-test">Lien : <a href={{staff.lien}} target="_blank"> {{staff.nomLien}} </a> </p>
-            <a routerLink="/edit/{{staff.id}}" class="card-link">Modifier</a>
+            <a routerLink="/edit/trad/{{staff.id}}" class="card-link">Modifier</a>
             <button class="card-link link-danger" (click)="deleteStaff(staff.idChapitre)" style="padding: 0; border: none; background: none;">Supprimer</button>
           </div>
         </div>

@@ -1,28 +1,28 @@
 ﻿namespace DeltaruneFrBackEnd.Repositories
 {
-    public class StaffRepository : IStaffRepository
+    public class TraducteurRepository : ITraducteurRepository
     {
         private readonly DefaultSqlConnectionFactory _connectionFactory;
 
-        public StaffRepository(DefaultSqlConnectionFactory connectionFactory)
+        public TraducteurRepository(DefaultSqlConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<IEnumerable<Staff>> GetAllStaff()
+        public async Task<IEnumerable<Traducteur>> GetAllStaff()
         {
             string sql = "SELECT * FROM staff ORDER BY id DESC";
 
             using var connec = _connectionFactory.Create();
-            return await connec.QueryAsync<Staff>(sql);
+            return await connec.QueryAsync<Traducteur>(sql);
         }
-        public async Task<IEnumerable<Staff>> GetStaff()
+        public async Task<IEnumerable<Traducteur>> GetStaff()
         {
-            string sql = "SELECT DISTINCT nom, photo, description, card, lien, nomLien FROM staff ORDER BY nom";
+            string sql = "SELECT DISTINCT nom, photo, description, lien, nomLien FROM staff ORDER BY nom";
 
             using var connec = _connectionFactory.Create();
-            return await connec.QueryAsync<Staff>(sql);
+            return await connec.QueryAsync<Traducteur>(sql);
         }
-        public async Task<IEnumerable<Staff>> GetStaffById(int id)
+        public async Task<IEnumerable<Traducteur>> GetStaffById(int id)
         {
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);
@@ -33,9 +33,9 @@
             string sql = "SELECT * FROM staff WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            return await connec.QueryAsync<Staff>(sql, parameters);
+            return await connec.QueryAsync<Traducteur>(sql, parameters);
         }
-        public async Task<IEnumerable<Staff>> GetStaffByChapter(int id)
+        public async Task<IEnumerable<Traducteur>> GetStaffByChapter(int id)
         {
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);
@@ -46,10 +46,10 @@
             string sql = "SELECT * FROM staff WHERE idChapitre = @id ORDER BY nom";
 
             using var connec = _connectionFactory.Create();
-            return await connec.QueryAsync<Staff>(sql, parameters);
+            return await connec.QueryAsync<Traducteur>(sql, parameters);
         }
 
-        public async Task SetStaff(Staff staff)
+        public async Task SetStaff(Traducteur staff)
         {
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);
@@ -57,19 +57,18 @@
             dictionary.Add("@nom", staff.nom);
             dictionary.Add("@photo", staff.photo);
             dictionary.Add("@description", staff.description);
-            dictionary.Add("@card", staff.card);
             dictionary.Add("@lien", staff.lien);
             dictionary.Add("@nomLien", staff.nomLien);
             dictionary.Add("@idChapitre", staff.idChapitre);
             parameters.AddDynamicParams(dictionary);
 
-            string sql = @"INSERT INTO staff (nom, photo, description, card, lien, nomLien, idChapitre) 
-                            VALUES (@nom, @photo, @description, @card, @lien, @nomLien, @idChapitre)";
+            string sql = @"INSERT INTO staff (nom, photo, description, lien, nomLien, idChapitre) 
+                            VALUES (@nom, @photo, @description, @lien, @nomLien, @idChapitre)";
 
             using var connec = _connectionFactory.Create();
             await connec.ExecuteAsync(sql, parameters);
         }
-        public async Task EditStaff(Staff staff)
+        public async Task EditStaff(Traducteur staff)
         {
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);
@@ -78,14 +77,13 @@
             dictionary.Add("@nom", staff.nom);
             dictionary.Add("@photo", staff.photo);
             dictionary.Add("@description", staff.description);
-            dictionary.Add("@card", staff.card);
             dictionary.Add("@lien", staff.lien);
             dictionary.Add("@nomLien", staff.nomLien);
             dictionary.Add("@idChapitre", staff.idChapitre);
             parameters.AddDynamicParams(dictionary);
 
             string sql = @"UPDATE staff 
-                        SET nom = @nom, photo = @photo,description = @description, card = @card, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
+                        SET nom = @nom, photo = @photo,description = @description, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
                         WHERE id = @id";
 
             using var connec = _connectionFactory.Create();

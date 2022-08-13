@@ -11,11 +11,11 @@ import { VerifaccountService } from 'src/app/services/verifaccount.service';
 export class EditComponent implements OnInit {
 
   id: number = parseInt(<string>this.route.snapshot.paramMap.get('id'));
+  equipe = this.route.snapshot.paramMap.get('equipe');
 
   nom = "";
   photo = "";
   description: string | undefined = undefined;
-  card: string | undefined = undefined;
   lien: string | undefined = undefined;
   nomLien: string | undefined = undefined;
   chapitre: number = 0;
@@ -30,33 +30,40 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getChapitres();
-    this.getStaffById();
+    this.getById();
   }
 
-  editStaff() {
+  edit() {
     const chapitre = parseInt((<HTMLInputElement>document.getElementById('chapitre')).value);
-    this.deltaruneService.editStaff(this.id, this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, chapitre)
-    .subscribe({
-      next: () => this.router.navigateByUrl('/home'),
-      error: (error) => console.error(error)
-    })
+    switch (this.equipe) {
+      case "trad":
+        this.deltaruneService.editStaff(this.id, this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+        .subscribe({
+          next: () => this.router.navigateByUrl('/home'),
+          error: (error) => console.error(error)
+        })
+        break;
+    }
   }
 
-  getStaffById(): void {
-    this.deltaruneService.getStaffById(this.id)
-    .subscribe({
-      next: (data) => {
-        const staff = data[0]
-        this.nom = staff.nom
-        this.photo = staff.photo;
-        this.description = staff.description
-        this.card = staff.card;
-        this.lien = staff.lien;
-        this.nomLien = staff.nomLien;
-        this.chapitre = staff.idChapitre;
-      },
-      error: (error) => console.error(error)
-    })
+  getById(): void {
+    switch (this.equipe) {
+      case "trad":
+        this.deltaruneService.getStaffById(this.id)
+        .subscribe({
+          next: (data) => {
+            const staff = data[0]
+            this.nom = staff.nom
+            this.photo = staff.photo;
+            this.description = staff.description
+            this.lien = staff.lien;
+            this.nomLien = staff.nomLien;
+            this.chapitre = staff.idChapitre;
+          },
+          error: (error) => console.error(error)
+        })
+        break;
+    }
   }
 
   getChapitres(): void {

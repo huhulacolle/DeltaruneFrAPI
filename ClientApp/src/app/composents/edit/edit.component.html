@@ -1,7 +1,7 @@
 
 <a routerLink="/" class="h2">Retour</a>
 <br><br>
-<form (ngSubmit)="editStaff()">
+<form (ngSubmit)="edit()">
   <div class="col d-flex justify-content-center">
     <div class="card" style="width: 18rem;">
       <div class="card-body">
@@ -17,9 +17,6 @@
             <option *ngFor="let chap of listChapter" value={{chap}}>{{chap}}</option>
           </select>
         </h6>
-        <p class="card-text">
-          <input [(ngModel)]="card" name="card" type="text" class="form-control" placeholder="Card (non obligatoire)">
-        </p>
         <p class="card-text">
           <input [(ngModel)]="description" name="description" type="text" class="form-control" placeholder="Description (non obligatoire)">
         </p>

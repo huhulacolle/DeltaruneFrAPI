@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Beta, BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, StaffdeltaruneClient, Tokens, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { Beta, BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Traducteur, Tokens, TraducteurdeltaruneClient, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class DeltaruneService {
 
   constructor(
     private user: UserdeltaruneClient,
-    private staff: StaffdeltaruneClient,
+    private traducteur: TraducteurdeltaruneClient,
     private progression: ProgressiondeltaruneClient,
     private beta: BetadeltaruneClient
   ) { }
@@ -18,32 +18,32 @@ export class DeltaruneService {
     return this.user.getAccount(new User({nom: user, mdp: mdp}));
   }
 
-  public setStaff(nom: string, photo: string, description: string | undefined, card: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
-    return this.staff.setStaff(new Staff({id: 0, nom: nom, photo: photo, description: description, card: card, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
+  public setStaff(nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
+    return this.traducteur.setStaff(new Traducteur({id: 0, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
   }
 
-  public editStaff(id: number, nom: string, photo: string, description: string | undefined, card: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
-    return this.staff.editStaff(new Staff({id: id, nom: nom, photo: photo, description: description, card: card, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
+  public editStaff(id: number, nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
+    return this.traducteur.editStaff(new Traducteur({id: id, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
   }
 
-  public getAllStaff(): Observable<Staff[]> {
-    return this.staff.getAllStaff();
+  public getAllStaff(): Observable<Traducteur[]> {
+    return this.traducteur.getAllStaff();
   }
 
-  public getStaffById(id: number): Observable<Staff[]> {
-    return this.staff.getStaffById(id);
+  public getStaffById(id: number): Observable<Traducteur[]> {
+    return this.traducteur.getStaffById(id);
   }
 
   public getChapitres(): Observable<Chapitre[]> {
-    return this.staff.getChapitres();
+    return this.traducteur.getChapitres();
   }
 
   public editChapitre(chap: number): Observable<FileResponse | null> {
-    return this.staff.editChapitre(chap);
+    return this.traducteur.editChapitre(chap);
   }
 
   public deleteStaff(id: number): Observable<FileResponse | null> {
-    return this.staff.deleteStaff(id);
+    return this.traducteur.deleteStaff(id);
   }
 
   public getProgression(): Observable<Progression[]> {

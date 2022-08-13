@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chapitre, Staff } from 'src/app/clientSwagger/deltaruneClient';
+import { Chapitre, Traducteur } from 'src/app/clientSwagger/deltaruneClient';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
 import { VerifaccountService } from 'src/app/services/verifaccount.service';
 
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   lien: string | undefined = undefined;
   nomLien: string | undefined = undefined;
 
-  staffs: Staff[] = [];
+  staffs: Traducteur[] = [];
   listChapter: number[] = [];
 
   constructor(
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   setStaff(): void {
     const chapitre = parseInt((<HTMLInputElement>document.getElementById('chapitre')).value);
-    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, chapitre)
+    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
     .subscribe({
       next: () => { this.getAllStaff(); },
       error: (error) => console.error(error)

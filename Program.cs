@@ -35,7 +35,7 @@ builder.Services.AddSwaggerDocument();
 
 builder.Services.AddScoped<IProgressionRepository, ProgressionRepository>();
 
-builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+builder.Services.AddScoped<ITraducteurRepository, TraducteurRepository>();
 
 builder.Services.AddScoped<IBetaRepository, BetaRepository>();
 
