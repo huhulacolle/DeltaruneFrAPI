@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       this.deltaruneService.getAccount(this.nom, this.mdp).subscribe(
         data => {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('token', data);
           this.router.navigateByUrl('/home');
         }
       )

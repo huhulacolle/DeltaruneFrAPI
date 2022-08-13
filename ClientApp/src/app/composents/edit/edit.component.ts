@@ -43,6 +43,13 @@ export class EditComponent implements OnInit {
           error: (error) => console.error(error)
         })
         break;
+        case "beta":
+          this.deltaruneService.editBeta(this.id, this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+          .subscribe({
+            next: () => this.router.navigateByUrl('/beta'),
+            error: (error) => console.error(error)
+          })
+          break;
     }
   }
 
@@ -59,6 +66,21 @@ export class EditComponent implements OnInit {
             this.lien = staff.lien;
             this.nomLien = staff.nomLien;
             this.chapitre = staff.idChapitre;
+          },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "beta":
+        this.deltaruneService.getBetaById(this.id)
+        .subscribe({
+          next: (data) => {
+            const beta = data[0]
+            this.nom = beta.nom
+            this.photo = beta.photo;
+            this.description = beta.description
+            this.lien = beta.lien;
+            this.nomLien = beta.nomLien;
+            this.chapitre = beta.idChapitre;
           },
           error: (error) => console.error(error)
         })

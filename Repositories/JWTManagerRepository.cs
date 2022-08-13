@@ -32,7 +32,7 @@
 
         }
 
-        public Tokens Authenticate(User users)
+        public string Authenticate(User users)
         {
             GetAllAcount();
 
@@ -53,7 +53,7 @@
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return new Tokens { Token = tokenHandler.WriteToken(token) };
+            return tokenHandler.WriteToken(token);
         }
 
         public void GetAllAcount()

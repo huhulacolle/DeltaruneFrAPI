@@ -13,9 +13,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { EditComponent } from './composents/edit/edit.component';
 import { NavbarComponent } from './composents/navbar/navbar.component';
 import { ProgressionComponent } from './composents/progression/progression.component';
-import { BetaComponent } from './composents/beta-testeurs/beta/beta.component';
-import { EditBetaComponent } from './composents/beta-testeurs/edit-beta/edit-beta.component';
-import { NomVoixComponent } from './composents/voix/nom-voix/nom-voix.component';
+import { BetaComponent } from './composents/beta/beta.component';
+import { VoixComponent } from './composents/voix/voix.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +25,7 @@ import { NomVoixComponent } from './composents/voix/nom-voix/nom-voix.component'
     NavbarComponent,
     ProgressionComponent,
     BetaComponent,
-    EditBetaComponent,
-    NomVoixComponent
+    VoixComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,9 +36,8 @@ import { NomVoixComponent } from './composents/voix/nom-voix/nom-voix.component'
       { path: 'home', component: HomeComponent},
       { path: 'edit/:equipe/:id', component: EditComponent},
       { path: 'beta', component: BetaComponent},
-      { path: 'beta/:id', component: EditBetaComponent},
       { path: 'progression', component: ProgressionComponent},
-      { path: 'voix', component: NomVoixComponent}
+      { path: 'voix', component: VoixComponent}
     ])
   ],
   providers: [

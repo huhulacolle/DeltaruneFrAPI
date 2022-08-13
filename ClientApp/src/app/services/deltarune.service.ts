@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Beta, BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Traducteur, Tokens, TraducteurdeltaruneClient, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { Beta, BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Traducteur, TraducteurdeltaruneClient, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class DeltaruneService {
     private beta: BetadeltaruneClient
   ) { }
 
-  public getAccount(user: string, mdp: string): Observable<Tokens> {
+  public getAccount(user: string, mdp: string): Observable<string> {
     return this.user.getAccount(new User({nom: user, mdp: mdp}));
   }
 

@@ -1120,7 +1120,7 @@ export class UserdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getAccount(usersdata: User): Observable<Tokens> {
+    getAccount(usersdata: User): Observable<string> {
         let url_ = this.baseUrl + "/api/connexion";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1143,14 +1143,14 @@ export class UserdeltaruneClient {
                 try {
                     return this.processGetAccount(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Tokens>;
+                    return _observableThrow(e) as any as Observable<string>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Tokens>;
+                return _observableThrow(response_) as any as Observable<string>;
         }));
     }
 
-    protected processGetAccount(response: HttpResponseBase): Observable<Tokens> {
+    protected processGetAccount(response: HttpResponseBase): Observable<string> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1161,7 +1161,8 @@ export class UserdeltaruneClient {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Tokens.fromJS(resultData200);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1427,42 +1428,6 @@ export class User implements IUser {
 export interface IUser {
     nom: string;
     mdp: string;
-}
-
-export class Tokens implements ITokens {
-    token!: string;
-
-    constructor(data?: ITokens) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.token = _data["token"];
-        }
-    }
-
-    static fromJS(data: any): Tokens {
-        data = typeof data === 'object' ? data : {};
-        let result = new Tokens();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["token"] = this.token;
-        return data;
-    }
-}
-
-export interface ITokens {
-    token: string;
 }
 
 export interface FileResponse {
