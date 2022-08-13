@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DeltaruneFrBackEnd.Controllers
+﻿namespace DeltaruneFrBackEnd.Controllers
 {
     [Authorize]
     [Route("api/Beta")]
