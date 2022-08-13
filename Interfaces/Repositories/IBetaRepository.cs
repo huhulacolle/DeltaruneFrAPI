@@ -2,12 +2,12 @@
 {
     public interface IBetaRepository
     {
-        public Task<IEnumerable<Beta>> GetAllBetaAsync();
-        public Task<IEnumerable<Beta>> GetBeta();
-        public Task<IEnumerable<Beta>> GetBetaById(int id);
-        public Task<IEnumerable<Beta>> GetBetaByChapter(int id);
-        public Task SetBeta(Beta beta);
-        public Task EditBeta(Beta beta);
+        public Task<IEnumerable<Staff>> GetAllBetaAsync();
+        public Task<IEnumerable<Staff>> GetBeta();
+        public Task<IEnumerable<Staff>> GetBetaById(int id);
+        public Task<IEnumerable<Staff>> GetBetaByChapter(int id);
+        public Task SetBeta(Staff beta);
+        public Task EditBeta(Staff beta);
         public Task DeleteBeta(int id);
     }
 }

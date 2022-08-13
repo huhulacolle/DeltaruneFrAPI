@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Beta } from 'src/app/clientSwagger/deltaruneClient';
+import { Staff } from 'src/app/clientSwagger/deltaruneClient';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
 import { VerifaccountService } from 'src/app/services/verifaccount.service';
 
@@ -16,7 +16,7 @@ export class BetaComponent implements OnInit {
   lien: string | undefined = undefined;
   nomLien: string | undefined = undefined;
 
-  betas: Beta[] = [];
+  betas: Staff[] = [];
   listChapter: number[] = [];
 
 

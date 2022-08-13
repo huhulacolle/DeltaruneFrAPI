@@ -1,1 +1,59 @@
-<p>voix works!</p>
+<br>
+<app-navbar></app-navbar>
+<br>
+<form (ngSubmit)="setStaff()">
+  <div class="col d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">
+          <input [(ngModel)]="nom" name="nom" type="text" class="form-control" placeholder="Pseudo" required>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <input [(ngModel)]="photo" name="photo" class="form-control" type="text" placeholder="mario.gif">
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <select id="chapitre" class="form-control" required>
+            <option value="" disabled selected hidden>Chapitre</option>
+            <option *ngFor="let chap of listChapter" value={{chap}}>{{chap}}</option>
+          </select>
+        </h6>
+        <p class="card-text">
+          <input [(ngModel)]="description" name="description" type="text" class="form-control" placeholder="Description (non obligatoire)">
+        </p>
+        <p class="card-text">
+          <input [(ngModel)]="nomLien" name="nomLien" type="text" class="form-control" placeholder="nom du site (non obligatoire)">
+        </p>
+        <p class="card-text">
+          <input [(ngModel)]="lien" name="lien" type="text" class="form-control" placeholder="Lien (non obligatoire)">
+        </p>
+        <button type="submit" class="card-link text-center float-end">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<br><br>
+<div class="container">
+  <ng-container *ngFor="let p of staffs; let i = index">
+    <div class="row align-items-start" *ngIf="(i%3)==0">
+      <div class="col" *ngFor="let staff of staffs.slice(i, i+3)">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"> </h5>
+            <h6 class="card-subtitle mb-2"> {{staff.nom}} </h6>
+            <h6 class="card-subtitle mb-2"> photo : {{staff.photo}} </h6>
+            <h6 class="card-subtitle mb-2"> Chapitre : {{staff.idChapitre}} </h6>
+            <p class="card-subtitle mb-2" *ngIf="staff.description ;else nodesc"> {{staff.description}} </p>
+            <ng-template #nodesc>
+              <h6 class="card-subtitle mb-2 text-muted">aucune description</h6>
+            </ng-template>
+            <p class="card-test">Lien : <a href={{staff.lien}} target="_blank"> {{staff.nomLien}} </a> </p>
+            <a routerLink="/edit/trad/{{staff.id}}" class="card-link">Modifier</a>
+            <button class="card-link link-danger" (click)="deleteStaff(staff.idChapitre)" style="padding: 0; border: none; background: none;">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

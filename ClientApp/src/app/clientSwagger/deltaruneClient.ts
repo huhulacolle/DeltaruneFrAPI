@@ -26,7 +26,7 @@ export class BetadeltaruneClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "https://localhost:7046";
     }
 
-    getAllBeta(): Observable<Beta[]> {
+    getAllBeta(): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Beta/Angular";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -45,14 +45,14 @@ export class BetadeltaruneClient {
                 try {
                     return this.processGetAllBeta(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Beta[]>;
+                    return _observableThrow(e) as any as Observable<Staff[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Beta[]>;
+                return _observableThrow(response_) as any as Observable<Staff[]>;
         }));
     }
 
-    protected processGetAllBeta(response: HttpResponseBase): Observable<Beta[]> {
+    protected processGetAllBeta(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -66,7 +66,7 @@ export class BetadeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Beta.fromJS(item));
+                    result200!.push(Staff.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -81,7 +81,7 @@ export class BetadeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getBeta(): Observable<Beta[]> {
+    getBeta(): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Beta";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -100,14 +100,14 @@ export class BetadeltaruneClient {
                 try {
                     return this.processGetBeta(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Beta[]>;
+                    return _observableThrow(e) as any as Observable<Staff[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Beta[]>;
+                return _observableThrow(response_) as any as Observable<Staff[]>;
         }));
     }
 
-    protected processGetBeta(response: HttpResponseBase): Observable<Beta[]> {
+    protected processGetBeta(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -121,7 +121,7 @@ export class BetadeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Beta.fromJS(item));
+                    result200!.push(Staff.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -136,7 +136,7 @@ export class BetadeltaruneClient {
         return _observableOf(null as any);
     }
 
-    setBeta(beta: Beta): Observable<FileResponse | null> {
+    setBeta(beta: Staff): Observable<FileResponse | null> {
         let url_ = this.baseUrl + "/api/Beta";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -186,7 +186,7 @@ export class BetadeltaruneClient {
         return _observableOf(null as any);
     }
 
-    editBeta(beta: Beta): Observable<FileResponse | null> {
+    editBeta(beta: Staff): Observable<FileResponse | null> {
         let url_ = this.baseUrl + "/api/Beta";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -286,7 +286,7 @@ export class BetadeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getBetaById(id: number): Observable<Beta[]> {
+    getBetaById(id: number): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Beta/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -308,14 +308,14 @@ export class BetadeltaruneClient {
                 try {
                     return this.processGetBetaById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Beta[]>;
+                    return _observableThrow(e) as any as Observable<Staff[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Beta[]>;
+                return _observableThrow(response_) as any as Observable<Staff[]>;
         }));
     }
 
-    protected processGetBetaById(response: HttpResponseBase): Observable<Beta[]> {
+    protected processGetBetaById(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -329,7 +329,7 @@ export class BetadeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Beta.fromJS(item));
+                    result200!.push(Staff.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -344,7 +344,7 @@ export class BetadeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getBetaByChapter(id: number): Observable<Beta[]> {
+    getBetaByChapter(id: number): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Beta/Chapitre/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -366,14 +366,14 @@ export class BetadeltaruneClient {
                 try {
                     return this.processGetBetaByChapter(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Beta[]>;
+                    return _observableThrow(e) as any as Observable<Staff[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Beta[]>;
+                return _observableThrow(response_) as any as Observable<Staff[]>;
         }));
     }
 
-    protected processGetBetaByChapter(response: HttpResponseBase): Observable<Beta[]> {
+    protected processGetBetaByChapter(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -387,7 +387,7 @@ export class BetadeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Beta.fromJS(item));
+                    result200!.push(Staff.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -577,7 +577,7 @@ export class TraducteurdeltaruneClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "https://localhost:7046";
     }
 
-    getAllStaff(): Observable<Traducteur[]> {
+    getAllStaff(): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Staff/Angular";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -596,14 +596,14 @@ export class TraducteurdeltaruneClient {
                 try {
                     return this.processGetAllStaff(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Traducteur[]>;
+                    return _observableThrow(e) as any as Observable<Staff[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Traducteur[]>;
+                return _observableThrow(response_) as any as Observable<Staff[]>;
         }));
     }
 
-    protected processGetAllStaff(response: HttpResponseBase): Observable<Traducteur[]> {
+    protected processGetAllStaff(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -617,7 +617,7 @@ export class TraducteurdeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Traducteur.fromJS(item));
+                    result200!.push(Staff.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -632,7 +632,7 @@ export class TraducteurdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getStaff(): Observable<Traducteur[]> {
+    getStaff(): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Staff";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -651,14 +651,14 @@ export class TraducteurdeltaruneClient {
                 try {
                     return this.processGetStaff(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Traducteur[]>;
+                    return _observableThrow(e) as any as Observable<Staff[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Traducteur[]>;
+                return _observableThrow(response_) as any as Observable<Staff[]>;
         }));
     }
 
-    protected processGetStaff(response: HttpResponseBase): Observable<Traducteur[]> {
+    protected processGetStaff(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -672,7 +672,7 @@ export class TraducteurdeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Traducteur.fromJS(item));
+                    result200!.push(Staff.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -687,7 +687,7 @@ export class TraducteurdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    setStaff(staff: Traducteur): Observable<FileResponse | null> {
+    setStaff(staff: Staff): Observable<FileResponse | null> {
         let url_ = this.baseUrl + "/api/Staff";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -737,7 +737,7 @@ export class TraducteurdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    editStaff(staff: Traducteur): Observable<FileResponse | null> {
+    editStaff(staff: Staff): Observable<FileResponse | null> {
         let url_ = this.baseUrl + "/api/Staff";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -837,7 +837,7 @@ export class TraducteurdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getStaffById(id: number): Observable<Traducteur[]> {
+    getStaffById(id: number): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Staff/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -859,14 +859,14 @@ export class TraducteurdeltaruneClient {
                 try {
                     return this.processGetStaffById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Traducteur[]>;
+                    return _observableThrow(e) as any as Observable<Staff[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Traducteur[]>;
+                return _observableThrow(response_) as any as Observable<Staff[]>;
         }));
     }
 
-    protected processGetStaffById(response: HttpResponseBase): Observable<Traducteur[]> {
+    protected processGetStaffById(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -880,7 +880,7 @@ export class TraducteurdeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Traducteur.fromJS(item));
+                    result200!.push(Staff.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -895,7 +895,7 @@ export class TraducteurdeltaruneClient {
         return _observableOf(null as any);
     }
 
-    getStaffByChapter(id: number): Observable<Traducteur[]> {
+    getStaffByChapter(id: number): Observable<Staff[]> {
         let url_ = this.baseUrl + "/api/Staff/Chapitre/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -917,14 +917,14 @@ export class TraducteurdeltaruneClient {
                 try {
                     return this.processGetStaffByChapter(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<Traducteur[]>;
+                    return _observableThrow(e) as any as Observable<Staff[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<Traducteur[]>;
+                return _observableThrow(response_) as any as Observable<Staff[]>;
         }));
     }
 
-    protected processGetStaffByChapter(response: HttpResponseBase): Observable<Traducteur[]> {
+    protected processGetStaffByChapter(response: HttpResponseBase): Observable<Staff[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -938,7 +938,7 @@ export class TraducteurdeltaruneClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Traducteur.fromJS(item));
+                    result200!.push(Staff.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -1174,7 +1174,7 @@ export class UserdeltaruneClient {
     }
 }
 
-export class Beta implements IBeta {
+export class Staff implements IStaff {
     id!: number;
     nom!: string;
     photo!: string;
@@ -1183,7 +1183,7 @@ export class Beta implements IBeta {
     nomLien?: string | undefined;
     idChapitre!: number;
 
-    constructor(data?: IBeta) {
+    constructor(data?: IStaff) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -1204,9 +1204,9 @@ export class Beta implements IBeta {
         }
     }
 
-    static fromJS(data: any): Beta {
+    static fromJS(data: any): Staff {
         data = typeof data === 'object' ? data : {};
-        let result = new Beta();
+        let result = new Staff();
         result.init(data);
         return result;
     }
@@ -1224,7 +1224,7 @@ export class Beta implements IBeta {
     }
 }
 
-export interface IBeta {
+export interface IStaff {
     id: number;
     nom: string;
     photo: string;
@@ -1292,66 +1292,6 @@ export interface IProgression {
     traduction?: number | undefined;
     beta?: number | undefined;
     fini?: boolean | undefined;
-}
-
-export class Traducteur implements ITraducteur {
-    id!: number;
-    nom!: string;
-    photo!: string;
-    description?: string | undefined;
-    lien?: string | undefined;
-    nomLien?: string | undefined;
-    idChapitre!: number;
-
-    constructor(data?: ITraducteur) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.nom = _data["nom"];
-            this.photo = _data["photo"];
-            this.description = _data["description"];
-            this.lien = _data["lien"];
-            this.nomLien = _data["nomLien"];
-            this.idChapitre = _data["idChapitre"];
-        }
-    }
-
-    static fromJS(data: any): Traducteur {
-        data = typeof data === 'object' ? data : {};
-        let result = new Traducteur();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["nom"] = this.nom;
-        data["photo"] = this.photo;
-        data["description"] = this.description;
-        data["lien"] = this.lien;
-        data["nomLien"] = this.nomLien;
-        data["idChapitre"] = this.idChapitre;
-        return data;
-    }
-}
-
-export interface ITraducteur {
-    id: number;
-    nom: string;
-    photo: string;
-    description?: string | undefined;
-    lien?: string | undefined;
-    nomLien?: string | undefined;
-    idChapitre: number;
 }
 
 export class Chapitre implements IChapitre {

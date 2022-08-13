@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Beta, BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Traducteur, TraducteurdeltaruneClient, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, TraducteurdeltaruneClient, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class DeltaruneService {
 
   constructor(
     private user: UserdeltaruneClient,
-    private traducteur: TraducteurdeltaruneClient,
+    private staff: TraducteurdeltaruneClient,
     private progression: ProgressiondeltaruneClient,
     private beta: BetadeltaruneClient
   ) { }
@@ -19,31 +19,31 @@ export class DeltaruneService {
   }
 
   public setStaff(nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
-    return this.traducteur.setStaff(new Traducteur({id: 0, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
+    return this.staff.setStaff(new Staff({id: 0, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
   }
 
   public editStaff(id: number, nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
-    return this.traducteur.editStaff(new Traducteur({id: id, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
+    return this.staff.editStaff(new Staff({id: id, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}));
   }
 
-  public getAllStaff(): Observable<Traducteur[]> {
-    return this.traducteur.getAllStaff();
+  public getAllStaff(): Observable<Staff[]> {
+    return this.staff.getAllStaff();
   }
 
-  public getStaffById(id: number): Observable<Traducteur[]> {
-    return this.traducteur.getStaffById(id);
+  public getStaffById(id: number): Observable<Staff[]> {
+    return this.staff.getStaffById(id);
   }
 
   public getChapitres(): Observable<Chapitre[]> {
-    return this.traducteur.getChapitres();
+    return this.staff.getChapitres();
   }
 
   public editChapitre(chap: number): Observable<FileResponse | null> {
-    return this.traducteur.editChapitre(chap);
+    return this.staff.editChapitre(chap);
   }
 
   public deleteStaff(id: number): Observable<FileResponse | null> {
-    return this.traducteur.deleteStaff(id);
+    return this.staff.deleteStaff(id);
   }
 
   public getProgression(): Observable<Progression[]> {
@@ -55,7 +55,7 @@ export class DeltaruneService {
     return this.progression.editProgression(progression);
   }
 
-  public getAllBeta(): Observable<Beta[]> {
+  public getAllBeta(): Observable<Staff[]> {
     return this.beta.getAllBeta();
   }
 
@@ -64,14 +64,14 @@ export class DeltaruneService {
   }
 
   public setBeta(nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
-    return this.beta.setBeta(new Beta({id: 0, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
+    return this.beta.setBeta(new Staff({id: 0, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
   }
 
   public editBeta(id: number, nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
-    return this.beta.editBeta(new Beta({id: id, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
+    return this.beta.editBeta(new Staff({id: id, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
   }
 
-  public getBetaById(id: number): Observable<Beta[]> {
+  public getBetaById(id: number): Observable<Staff[]> {
     return this.beta.getBetaById(id);
   }
 

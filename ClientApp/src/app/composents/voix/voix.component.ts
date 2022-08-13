@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Staff } from 'src/app/clientSwagger/deltaruneClient';
+import { DeltaruneService } from 'src/app/services/deltarune.service';
 
 @Component({
   selector: 'app-voix',
@@ -7,9 +9,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VoixComponent implements OnInit {
 
-  constructor() { }
+  nom = "";
+  photo = "";
+  description: string | undefined = undefined;
+  card: string | undefined = undefined;
+  lien: string | undefined = undefined;
+  nomLien: string | undefined = undefined;
+
+  staffs: Staff[] = [];
+  listChapter: number[] = [];
+
+  constructor(
+    private deltaruneService: DeltaruneService,
+  ) { }
 
   ngOnInit(): void {
+    this.getAllStaff();
+    this.getChapitres();
   }
 
+  setStaff(): void {
+    const chapitre = parseInt((<HTMLInputElement>document.getElementById('chapitre')).value);
+    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+    .subscribe({
+      next: () => { this.getAllStaff(); },
+      error: (error) => console.error(error)
+    })
+  }
+
+  getChapitres(): void {
+    this.deltaruneService.getChapitres()
+    .subscribe({
+      next: (data) => {
+        for (let i = 1; i <= data[0].chapitre; i++) {
+          this.listChapter.push(i)
+        }
+      },
+      error: (error) => console.error(error)
+    })
+  }
+
+  getAllStaff(): void {
+    this.deltaruneService.getAllStaff()
+    .subscribe({
+      next: (data) => {
+        this.staffs = data;
+      },
+      error: (error) => console.error(error)
+    })
+  }
+
+  deleteStaff(id: number): void {
+    this.deltaruneService.deleteStaff(id)
+    .subscribe({
+      next: () => { this.getAllStaff(); },
+      error: (error) => console.error(error)
+    })
+  }
 }

@@ -1,0 +1,16 @@
+.table {
+  color: white;
+}
+
+.card {
+  background-color: black;
+  border: solid;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

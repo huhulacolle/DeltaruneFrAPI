@@ -17,7 +17,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpGet("Angular")]
-        public async Task<ActionResult<IEnumerable<Traducteur>>> GetAllStaff()
+        public async Task<ActionResult<IEnumerable<Staff>>> GetAllStaff()
         {
             var result = await _staffRepository.GetAllStaff();
 
@@ -26,7 +26,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Traducteur>>> GetStaff()
+        public async Task<ActionResult<IEnumerable<Staff>>> GetStaff()
         {
             var result = await _staffRepository.GetStaff();
 
@@ -34,7 +34,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Traducteur>>> GetStaffById(int id)
+        public async Task<ActionResult<IEnumerable<Staff>>> GetStaffById(int id)
         {
             var result = await _staffRepository.GetStaffById(id);
 
@@ -43,7 +43,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [AllowAnonymous]
         [HttpGet("Chapitre/{id}")]
-        public async Task<ActionResult<IEnumerable<Traducteur>>> GetStaffByChapter(int id)
+        public async Task<ActionResult<IEnumerable<Staff>>> GetStaffByChapter(int id)
         {
             var result = await _staffRepository.GetStaffByChapter(id);
 
@@ -51,7 +51,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> SetStaff(Traducteur staff)
+        public async Task<ActionResult> SetStaff(Staff staff)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> EditStaff(Traducteur staff)
+        public async Task<ActionResult> EditStaff(Staff staff)
         {
             try
             {

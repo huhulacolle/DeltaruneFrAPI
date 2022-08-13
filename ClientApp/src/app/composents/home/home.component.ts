@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Chapitre, Traducteur } from 'src/app/clientSwagger/deltaruneClient';
+import { Staff } from 'src/app/clientSwagger/deltaruneClient';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
-import { VerifaccountService } from 'src/app/services/verifaccount.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,7 @@ export class HomeComponent implements OnInit {
   lien: string | undefined = undefined;
   nomLien: string | undefined = undefined;
 
-  staffs: Traducteur[] = [];
+  staffs: Staff[] = [];
   listChapter: number[] = [];
 
   constructor(

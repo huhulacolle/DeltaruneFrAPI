@@ -9,12 +9,12 @@
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<IEnumerable<Beta>> GetAllBetaAsync()
+        public async Task<IEnumerable<Staff>> GetAllBetaAsync()
         {
             string sql = "SELECT * FROM beta ORDER BY id DESC";
 
             using var connec = _connectionFactory.Create();
-            return await connec.QueryAsync<Beta>(sql);
+            return await connec.QueryAsync<Staff>(sql);
         }
 
         public async Task DeleteBeta(int id)
@@ -31,7 +31,7 @@
             await connec.ExecuteAsync(sql, parameters);
         }
 
-        public async Task EditBeta(Beta beta)
+        public async Task EditBeta(Staff beta)
         {
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);
@@ -53,15 +53,15 @@
             await connec.ExecuteAsync(sql, parameters);
         }
 
-        public async Task<IEnumerable<Beta>> GetBeta()
+        public async Task<IEnumerable<Staff>> GetBeta()
         {
             string sql = "SELECT DISTINCT nom, photo, description, lien, nomLien FROM beta ORDER BY nom";
 
             using var connec = _connectionFactory.Create();
-            return await connec.QueryAsync<Beta>(sql);
+            return await connec.QueryAsync<Staff>(sql);
         }
 
-        public async Task<IEnumerable<Beta>> GetBetaByChapter(int id)
+        public async Task<IEnumerable<Staff>> GetBetaByChapter(int id)
         {
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);
@@ -72,10 +72,10 @@
             string sql = "SELECT * FROM beta WHERE idChapitre = @id ORDER BY nom";
 
             using var connec = _connectionFactory.Create();
-            return await connec.QueryAsync<Beta>(sql, parameters);
+            return await connec.QueryAsync<Staff>(sql, parameters);
         }
 
-        public async Task<IEnumerable<Beta>> GetBetaById(int id)
+        public async Task<IEnumerable<Staff>> GetBetaById(int id)
         {
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);
@@ -86,10 +86,10 @@
             string sql = "SELECT * FROM beta WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            return await connec.QueryAsync<Beta>(sql, parameters);
+            return await connec.QueryAsync<Staff>(sql, parameters);
         }
 
-        public async Task SetBeta(Beta beta)
+        public async Task SetBeta(Staff beta)
         {
             var dictionary = new Dictionary<string, object>();
             var parameters = new DynamicParameters(dictionary);

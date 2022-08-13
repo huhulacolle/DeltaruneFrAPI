@@ -15,7 +15,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpGet("Angular")]
-        public async Task<ActionResult<IEnumerable<Beta>>> GetAllBeta()
+        public async Task<ActionResult<IEnumerable<Staff>>> GetAllBeta()
         {
             var result = await betaRepository.GetAllBetaAsync();
 
@@ -24,7 +24,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Beta>>> GetBeta()
+        public async Task<ActionResult<IEnumerable<Staff>>> GetBeta()
         {
             var result = await betaRepository.GetBeta();
 
@@ -32,7 +32,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Beta>>> GetBetaById(int id)
+        public async Task<ActionResult<IEnumerable<Staff>>> GetBetaById(int id)
         {
             var result = await betaRepository.GetBetaById(id);
 
@@ -41,7 +41,7 @@ namespace DeltaruneFrBackEnd.Controllers
 
         [AllowAnonymous]
         [HttpGet("Chapitre/{id}")]
-        public async Task<ActionResult<IEnumerable<Beta>>> GetBetaByChapter(int id)
+        public async Task<ActionResult<IEnumerable<Staff>>> GetBetaByChapter(int id)
         {
             var result = await betaRepository.GetBetaByChapter(id);
 
@@ -49,7 +49,7 @@ namespace DeltaruneFrBackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> SetBeta(Beta beta)
+        public async Task<ActionResult> SetBeta(Staff beta)
         {
             try
             {
@@ -62,9 +62,8 @@ namespace DeltaruneFrBackEnd.Controllers
             }
         }
 
-        // PUT api/Beta
         [HttpPut]
-        public async Task<ActionResult> EditBeta(Beta beta)
+        public async Task<ActionResult> EditBeta(Staff beta)
         {
             try
             {
@@ -77,7 +76,6 @@ namespace DeltaruneFrBackEnd.Controllers
             }
         }
 
-        // DELETE api/Beta
         [HttpDelete]
         public async Task<ActionResult> DeleteBeta(int id)
         {

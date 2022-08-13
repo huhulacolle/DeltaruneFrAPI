@@ -1,6 +1,6 @@
 ﻿namespace DeltaruneFrBackEnd.Models
 {
-    public class Traducteur
+    public class Staff
     {
         public int id { get; set; }
         public string nom { get; set; }
