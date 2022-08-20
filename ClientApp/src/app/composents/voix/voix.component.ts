@@ -24,15 +24,15 @@ export class VoixComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllStaff();
+    this.GetAllVoix();
     this.getChapitres();
   }
 
-  setStaff(): void {
+  setVoix(): void {
     const chapitre = parseInt((<HTMLInputElement>document.getElementById('chapitre')).value);
-    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+    this.deltaruneService.setVoix(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
     .subscribe({
-      next: () => { this.getAllStaff(); },
+      next: () => { this.GetAllVoix(); },
       error: (error) => console.error(error)
     })
   }
@@ -49,8 +49,8 @@ export class VoixComponent implements OnInit {
     })
   }
 
-  getAllStaff(): void {
-    this.deltaruneService.getAllStaff()
+  GetAllVoix(): void {
+    this.deltaruneService.GetAllVoix()
     .subscribe({
       next: (data) => {
         this.staffs = data;
@@ -59,10 +59,10 @@ export class VoixComponent implements OnInit {
     })
   }
 
-  deleteStaff(id: number): void {
-    this.deltaruneService.deleteStaff(id)
+  deleteVoix(id: number): void {
+    this.deltaruneService.deleteVoix(id)
     .subscribe({
-      next: () => { this.getAllStaff(); },
+      next: () => { this.GetAllVoix(); },
       error: (error) => console.error(error)
     })
   }

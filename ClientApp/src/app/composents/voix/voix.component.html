@@ -1,7 +1,7 @@
 <br>
 <app-navbar></app-navbar>
 <br>
-<form (ngSubmit)="setStaff()">
+<form (ngSubmit)="setVoix()">
   <div class="col d-flex justify-content-center">
     <div class="card" style="width: 18rem;">
       <div class="card-body">
@@ -49,8 +49,8 @@
               <h6 class="card-subtitle mb-2 text-muted">aucune description</h6>
             </ng-template>
             <p class="card-test">Lien : <a href={{staff.lien}} target="_blank"> {{staff.nomLien}} </a> </p>
-            <a routerLink="/edit/trad/{{staff.id}}" class="card-link">Modifier</a>
-            <button class="card-link link-danger" (click)="deleteStaff(staff.idChapitre)" style="padding: 0; border: none; background: none;">Supprimer</button>
+            <a routerLink="/edit/voix/{{staff.id}}" class="card-link">Modifier</a>
+            <button class="card-link link-danger" (click)="deleteVoix(staff.idChapitre)" style="padding: 0; border: none; background: none;">Supprimer</button>
           </div>
         </div>
       </div>

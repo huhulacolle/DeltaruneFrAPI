@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
-import { VerifaccountService } from 'src/app/services/verifaccount.service';
 
 @Component({
   selector: 'app-edit',
@@ -12,6 +11,7 @@ export class EditComponent implements OnInit {
 
   id: number = parseInt(<string>this.route.snapshot.paramMap.get('id'));
   equipe = this.route.snapshot.paramMap.get('equipe');
+  url = this.equipe;
 
   nom = "";
   photo = "";
@@ -31,6 +31,10 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.getChapitres();
     this.getById();
+
+    if (this.url == "trad") {
+      this.url = null
+    }
   }
 
   edit() {
@@ -47,6 +51,13 @@ export class EditComponent implements OnInit {
           this.deltaruneService.editBeta(this.id, this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
           .subscribe({
             next: () => this.router.navigateByUrl('/beta'),
+            error: (error) => console.error(error)
+          })
+          break;
+        case "voix":
+          this.deltaruneService.editVoix(this.id, this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+          .subscribe({
+            next: () => this.router.navigateByUrl('/voix'),
             error: (error) => console.error(error)
           })
           break;
@@ -72,6 +83,21 @@ export class EditComponent implements OnInit {
         break;
       case "beta":
         this.deltaruneService.getBetaById(this.id)
+        .subscribe({
+          next: (data) => {
+            const beta = data[0]
+            this.nom = beta.nom
+            this.photo = beta.photo;
+            this.description = beta.description
+            this.lien = beta.lien;
+            this.nomLien = beta.nomLien;
+            this.chapitre = beta.idChapitre;
+          },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "voix":
+        this.deltaruneService.getVoixById(this.id)
         .subscribe({
           next: (data) => {
             const beta = data[0]

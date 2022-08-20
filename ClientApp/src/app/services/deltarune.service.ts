@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, TraducteurdeltaruneClient, User, UserdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, TraducteurdeltaruneClient, User, UserdeltaruneClient, VoixdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ export class DeltaruneService {
     private user: UserdeltaruneClient,
     private staff: TraducteurdeltaruneClient,
     private progression: ProgressiondeltaruneClient,
-    private beta: BetadeltaruneClient
+    private beta: BetadeltaruneClient,
+    private voix: VoixdeltaruneClient
   ) { }
 
   public getAccount(user: string, mdp: string): Observable<string> {
@@ -77,6 +78,26 @@ export class DeltaruneService {
 
   public getProgressionJson(): Observable<FileResponse | null> {
     return this.progression.getProgressionJson();
+  }
+
+  public GetAllVoix(): Observable<Staff[]> {
+    return this.voix.getAllVoix();
+  }
+
+  public setVoix(nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
+    return this.voix.setVoix(new Staff({id: 0, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
+  }
+
+  public deleteVoix(id: number): Observable<FileResponse | null> {
+    return this.voix.deleteVoix(id);
+  }
+
+  public editVoix(id: number, nom: string, photo: string, description: string | undefined, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
+    return this.voix.editVoix(new Staff({id: id, nom: nom, photo: photo, description: description, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
+  }
+
+  public getVoixById(id: number): Observable<Staff[]> {
+    return this.voix.getVoixById(id);
   }
 
 }
