@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit {
   moins(chapitre: number): void {
     this.deltaruneService.editChapitre(--chapitre)
     .subscribe({
-      next: () => this.getChapitres(),
+      next: () => window.location.reload(),
       error: (error) => console.error(error)
     })
   }
@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit {
   plus(chapitre: number): void {
     this.deltaruneService.editChapitre(++chapitre)
     .subscribe({
-      next: () => this.getChapitres(),
+      next: () => window.location.reload(),
       error: (error) => console.error(error)
     })
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Staff } from 'src/app/clientSwagger/deltaruneClient';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
 
@@ -9,10 +10,11 @@ import { DeltaruneService } from 'src/app/services/deltarune.service';
 })
 export class HomeComponent implements OnInit {
 
+  url!: string;
+
   nom = "";
   photo = "";
   description: string | undefined = undefined;
-  card: string | undefined = undefined;
   lien: string | undefined = undefined;
   nomLien: string | undefined = undefined;
 
@@ -21,20 +23,45 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private deltaruneService: DeltaruneService,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
-    this.getAllStaff();
+    this.getAll();
     this.getChapitres();
+    if (this.router.url == "/home") {
+      this.url = "/trad"
+    }
+    else {
+      this.url = this.router.url;
+    }
   }
 
-  setStaff(): void {
+  set(): void {
     const chapitre = parseInt((<HTMLInputElement>document.getElementById('chapitre')).value);
-    this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
-    .subscribe({
-      next: () => { this.getAllStaff(); },
-      error: (error) => console.error(error)
-    })
+    switch (this.router.url) {
+      case "/home":
+        this.deltaruneService.setStaff(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+        .subscribe({
+          next: () => { this.getAll(); },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "/beta":
+        this.deltaruneService.setBeta(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+        .subscribe({
+          next: () => { this.getAll(); },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "/voix":
+        this.deltaruneService.setVoix(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+        .subscribe({
+          next: () => { this.getAll(); },
+          error: (error) => console.error(error)
+        })
+        break;
+    }
   }
 
   getChapitres(): void {
@@ -49,21 +76,60 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  getAllStaff(): void {
-    this.deltaruneService.getAllStaff()
-    .subscribe({
-      next: (data) => {
-        this.staffs = data;
-      },
-      error: (error) => console.error(error)
-    })
+  getAll(): void {
+    switch (this.router.url) {
+      case "/home":
+        this.deltaruneService.getAllStaff()
+        .subscribe({
+          next: (data) => {
+            this.staffs = data;
+          },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "/beta":
+        this.deltaruneService.getAllBeta()
+        .subscribe({
+          next: (data) => {
+            this.staffs = data;
+          },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "/voix":
+        this.deltaruneService.GetAllVoix()
+        .subscribe({
+          next: (data) => {
+            this.staffs = data;
+          },
+          error: (error) => console.error(error)
+        })
+    }
+
   }
 
-  deleteStaff(id: number): void {
-    this.deltaruneService.deleteStaff(id)
-    .subscribe({
-      next: () => { this.getAllStaff(); },
-      error: (error) => console.error(error)
-    })
+  delete(id: number): void {
+    switch (this.router.url) {
+      case "/home":
+        this.deltaruneService.deleteStaff(id)
+        .subscribe({
+          next: () => { this.getAll(); },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "/beta":
+        this.deltaruneService.deleteBeta(id)
+        .subscribe({
+          next: () => { this.getAll(); },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "/voix":
+        this.deltaruneService.deleteVoix(id)
+        .subscribe({
+          next: () => { this.getAll(); },
+          error: (error) => console.error(error)
+        })
+    }
   }
 }

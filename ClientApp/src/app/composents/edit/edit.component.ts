@@ -33,7 +33,7 @@ export class EditComponent implements OnInit {
     this.getById();
 
     if (this.url == "trad") {
-      this.url = null
+      this.url = "/home"
     }
   }
 
