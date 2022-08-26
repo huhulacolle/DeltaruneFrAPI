@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './composents/login/login.component';
-import { API_BASE_URL, BetadeltaruneClient, ProgressiondeltaruneClient, TraducteurdeltaruneClient, UserdeltaruneClient, VoixdeltaruneClient } from './clientSwagger/deltaruneClient';
+import { API_BASE_URL, BetadeltaruneClient, ProgressiondeltaruneClient, StaffdeltaruneClient, TraducteurdeltaruneClient, UserdeltaruneClient, VoixdeltaruneClient } from './clientSwagger/deltaruneClient';
 import { HomeComponent } from './composents/home/home.component';
 import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
@@ -32,6 +32,7 @@ import { ProgressionComponent } from './composents/progression/progression.compo
       { path: 'home', component: HomeComponent},
       { path: 'beta', component: HomeComponent},
       { path: 'voix', component: HomeComponent},
+      { path: 'staff', component: HomeComponent},
       { path: 'progression', component: ProgressionComponent},
       { path: 'edit/:equipe/:id', component: EditComponent}
     ])
@@ -42,6 +43,7 @@ import { ProgressionComponent } from './composents/progression/progression.compo
     ProgressiondeltaruneClient,
     BetadeltaruneClient,
     VoixdeltaruneClient,
+    StaffdeltaruneClient,
     {
 			provide: APP_INITIALIZER,
 			useFactory: apiUrlServiceFactory,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, TraducteurdeltaruneClient, User, UserdeltaruneClient, VoixdeltaruneClient } from '../clientSwagger/deltaruneClient';
+import { BetadeltaruneClient, Chapitre, FileResponse, Progression, ProgressiondeltaruneClient, Staff, StaffdeltaruneClient, StaffDR, TraducteurdeltaruneClient, User, UserdeltaruneClient, VoixdeltaruneClient } from '../clientSwagger/deltaruneClient';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class DeltaruneService {
     private staff: TraducteurdeltaruneClient,
     private progression: ProgressiondeltaruneClient,
     private beta: BetadeltaruneClient,
-    private voix: VoixdeltaruneClient
+    private voix: VoixdeltaruneClient,
+    private staffDR: StaffdeltaruneClient
   ) { }
 
   public getAccount(user: string, mdp: string): Observable<string> {
@@ -98,6 +99,26 @@ export class DeltaruneService {
 
   public getVoixById(id: number): Observable<Staff[]> {
     return this.voix.getVoixById(id);
+  }
+
+  public GetAllStaffDR(): Observable<StaffDR[]> {
+    return this.staffDR.getAllStaff();
+  }
+
+  public setStaffDR(nom: string, photo: string, description: string | undefined, card: string, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
+    return this.staffDR.setStaff(new StaffDR({id: 0, nom: nom, photo: photo, description: description, card: card, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
+  }
+
+  public deleteStaffDR(id: number): Observable<FileResponse | null> {
+    return this.staffDR.deleteStaff(id);
+  }
+
+  public editStaffDR(id: number, nom: string, photo: string, description: string | undefined, card: string, lien: string | undefined, nomLien: string | undefined, chapitre: number): Observable<FileResponse | null> {
+    return this.staffDR.editStaff(new StaffDR({id: id, nom: nom, photo: photo, description: description, card: card, lien: lien, nomLien: nomLien, idChapitre: chapitre}))
+  }
+
+  public getStaffByIdDR(id: number): Observable<StaffDR[]> {
+    return this.staffDR.getStaffById(id);
   }
 
 }
