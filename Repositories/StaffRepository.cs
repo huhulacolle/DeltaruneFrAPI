@@ -42,7 +42,7 @@ namespace DeltaruneFrBackEnd.Repositories
             parameters.AddDynamicParams(dictionary);
 
             string sql = @"UPDATE staffdr 
-                        SET nom = @nom, photo = @photo,description = @description, card = @card lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
+                        SET nom = @nom, photo = @photo,description = @description, card = @card, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
                         WHERE id = @id";
 
             using var connec = _connectionFactory.Create();

@@ -17,6 +17,9 @@
             <option *ngFor="let chap of listChapter" value={{chap}}>{{chap}}</option>
           </select>
         </h6>
+        <p class="card-text" *ngIf="equipe == 'staff'">
+          <input [(ngModel)]="card" name="card" type="text" class="form-control" placeholder="Card">
+        </p>
         <p class="card-text">
           <input [(ngModel)]="description" name="description" type="text" class="form-control" placeholder="Description (non obligatoire)">
         </p>

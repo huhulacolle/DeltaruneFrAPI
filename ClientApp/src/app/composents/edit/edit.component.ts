@@ -15,6 +15,7 @@ export class EditComponent implements OnInit {
 
   nom = "";
   photo = "";
+  card = "";
   description: string | undefined = undefined;
   lien: string | undefined = undefined;
   nomLien: string | undefined = undefined;
@@ -61,6 +62,13 @@ export class EditComponent implements OnInit {
             error: (error) => console.error(error)
           })
           break;
+        case "staff":
+          this.deltaruneService.editStaffDR(this.id, this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, chapitre)
+          .subscribe({
+            next: () => this.router.navigateByUrl('/staff'),
+            error: (error) => console.error(error)
+          })
+          break;
     }
   }
 
@@ -103,6 +111,22 @@ export class EditComponent implements OnInit {
             const beta = data[0]
             this.nom = beta.nom
             this.photo = beta.photo;
+            this.description = beta.description
+            this.lien = beta.lien;
+            this.nomLien = beta.nomLien;
+            this.chapitre = beta.idChapitre;
+          },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "staff":
+        this.deltaruneService.getStaffByIdDR(this.id)
+        .subscribe({
+          next: (data) => {
+            const beta = data[0]
+            this.nom = beta.nom
+            this.photo = beta.photo;
+            this.card = beta.card;
             this.description = beta.description
             this.lien = beta.lien;
             this.nomLien = beta.nomLien;

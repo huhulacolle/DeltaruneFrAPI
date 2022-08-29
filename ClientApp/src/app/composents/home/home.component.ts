@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Staff } from 'src/app/clientSwagger/deltaruneClient';
+import { Staff, StaffDR } from 'src/app/clientSwagger/deltaruneClient';
 import { DeltaruneService } from 'src/app/services/deltarune.service';
 
 @Component({
@@ -14,11 +14,13 @@ export class HomeComponent implements OnInit {
 
   nom = "";
   photo = "";
+  card = "";
   description: string | undefined = undefined;
   lien: string | undefined = undefined;
   nomLien: string | undefined = undefined;
 
   staffs: Staff[] = [];
+  staffsDR: StaffDR[] = []; 
   listChapter: number[] = [];
 
   constructor(
@@ -56,6 +58,13 @@ export class HomeComponent implements OnInit {
         break;
       case "/voix":
         this.deltaruneService.setVoix(this.nom, this.photo, this.description, this.lien, this.nomLien, chapitre)
+        .subscribe({
+          next: () => { this.getAll(); },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "/staff":
+        this.deltaruneService.setStaffDR(this.nom, this.photo, this.description, this.card, this.lien, this.nomLien, chapitre)
         .subscribe({
           next: () => { this.getAll(); },
           error: (error) => console.error(error)
@@ -104,6 +113,15 @@ export class HomeComponent implements OnInit {
           },
           error: (error) => console.error(error)
         })
+        break;
+      case "/staff":
+        this.deltaruneService.GetAllStaffDR()
+        .subscribe({
+          next: (data) => {
+            this.staffsDR = data;
+          },
+          error: (error) => console.error(error)
+        })
     }
 
   }
@@ -126,6 +144,13 @@ export class HomeComponent implements OnInit {
         break;
       case "/voix":
         this.deltaruneService.deleteVoix(id)
+        .subscribe({
+          next: () => { this.getAll(); },
+          error: (error) => console.error(error)
+        })
+        break;
+      case "/staff":
+        this.deltaruneService.deleteStaffDR(id)
         .subscribe({
           next: () => { this.getAll(); },
           error: (error) => console.error(error)

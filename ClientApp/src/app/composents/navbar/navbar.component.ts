@@ -28,16 +28,19 @@ export class NavbarComponent implements OnInit {
   getTitle(): void {
     switch (this.router.url) {
       case "/home":
-        this.title = "Traducteurs"
+        this.title = "Traducteurs";
         break;
       case "/beta":
-        this.title = "Beta-Testeurs"
+        this.title = "Beta-Testeurs";
         break;
       case "/voix":
-        this.title = "Doubleurs"
+        this.title = "Doubleurs";
         break;
       case "/progression":
-        this.title = "Progression"
+        this.title = "Progression";
+        break;
+      case "/staff":
+        this.title = "Staff";
         break;
       default:
         this.title = "Ryo"
