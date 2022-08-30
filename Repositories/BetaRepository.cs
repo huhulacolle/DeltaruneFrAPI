@@ -33,24 +33,12 @@
 
         public async Task EditBeta(Staff beta)
         {
-            var dictionary = new Dictionary<string, object>();
-            var parameters = new DynamicParameters(dictionary);
-
-            dictionary.Add("@id", beta.id);
-            dictionary.Add("@nom", beta.nom);
-            dictionary.Add("@photo", beta.photo);
-            dictionary.Add("@description", beta.description);
-            dictionary.Add("@lien", beta.lien);
-            dictionary.Add("@nomLien", beta.nomLien);
-            dictionary.Add("@idChapitre", beta.idChapitre);
-            parameters.AddDynamicParams(dictionary);
-
             string sql = @"UPDATE beta 
                         SET nom = @nom, photo = @photo,description = @description, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
                         WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            await connec.ExecuteAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, beta);
         }
 
         public async Task<IEnumerable<Staff>> GetBeta()
@@ -91,22 +79,11 @@
 
         public async Task SetBeta(Staff beta)
         {
-            var dictionary = new Dictionary<string, object>();
-            var parameters = new DynamicParameters(dictionary);
-
-            dictionary.Add("@nom", beta.nom);
-            dictionary.Add("@photo", beta.photo);
-            dictionary.Add("@description", beta.description);
-            dictionary.Add("@lien", beta.lien);
-            dictionary.Add("@nomLien", beta.nomLien);
-            dictionary.Add("@idChapitre", beta.idChapitre);
-            parameters.AddDynamicParams(dictionary);
-
             string sql = @"INSERT INTO beta (nom, photo, description, lien, nomLien, idChapitre) 
                             VALUES (@nom, @photo, @description, @lien, @nomLien, @idChapitre)";
 
             using var connec = _connectionFactory.Create();
-            await connec.ExecuteAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, beta);
         }
     }
 }

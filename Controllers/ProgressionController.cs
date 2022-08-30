@@ -44,10 +44,10 @@
 
             try
             {
-                string host = Environment.GetEnvironmentVariable("HOST");
-                string user = Environment.GetEnvironmentVariable("USER");
-                string mdp = Environment.GetEnvironmentVariable("MDP");
-                string url = Environment.GetEnvironmentVariable("URL");
+                string? host = Environment.GetEnvironmentVariable("HOST");
+                string? user = Environment.GetEnvironmentVariable("USER");
+                string? mdp = Environment.GetEnvironmentVariable("MDP");
+                string? url = Environment.GetEnvironmentVariable("URL");
 
                 using var client = new FtpClient(host, new System.Net.NetworkCredential { UserName = user, Password = mdp } );
 

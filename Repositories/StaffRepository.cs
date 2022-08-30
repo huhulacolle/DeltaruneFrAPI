@@ -28,25 +28,12 @@ namespace DeltaruneFrBackEnd.Repositories
 
         public async Task EditStaff(StaffDR staff)
         {
-            var dictionary = new Dictionary<string, object>();
-            var parameters = new DynamicParameters(dictionary);
-
-            dictionary.Add("@id", staff.id);
-            dictionary.Add("@nom", staff.nom);
-            dictionary.Add("@photo", staff.photo);
-            dictionary.Add("@description", staff.description);
-            dictionary.Add("@card", staff.card);
-            dictionary.Add("@lien", staff.lien);
-            dictionary.Add("@nomLien", staff.nomLien);
-            dictionary.Add("@idChapitre", staff.idChapitre);
-            parameters.AddDynamicParams(dictionary);
-
             string sql = @"UPDATE staffdr 
                         SET nom = @nom, photo = @photo,description = @description, card = @card, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
                         WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            await connec.ExecuteAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, staff);
         }
 
         public async Task<IEnumerable<StaffDR>> GetAllStaffAsync()
@@ -95,23 +82,11 @@ namespace DeltaruneFrBackEnd.Repositories
 
         public async Task SetStaff(StaffDR staff)
         {
-            var dictionary = new Dictionary<string, object>();
-            var parameters = new DynamicParameters(dictionary);
-
-            dictionary.Add("@nom", staff.nom);
-            dictionary.Add("@photo", staff.photo);
-            dictionary.Add("@description", staff.description);
-            dictionary.Add("@card", staff.card);
-            dictionary.Add("@lien", staff.lien);
-            dictionary.Add("@nomLien", staff.nomLien);
-            dictionary.Add("@idChapitre", staff.idChapitre);
-            parameters.AddDynamicParams(dictionary);
-
             string sql = @"INSERT INTO staffdr (nom, photo, description, card, lien, nomLien, idChapitre) 
                             VALUES (@nom, @photo, @description, @card, @lien, @nomLien, @idChapitre)";
 
             using var connec = _connectionFactory.Create();
-            await connec.ExecuteAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, staff);
         }
     }
 }

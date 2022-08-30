@@ -18,7 +18,7 @@ namespace DeltaruneFrBackEnd.Repositories
             dictionary.Add("@id", id);
             parameters.AddDynamicParams(dictionary);
 
-            string sql = "DELETE FROM beta WHERE voix = @id";
+            string sql = "DELETE FROM voix WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
             await connec.ExecuteAsync(sql, parameters);
@@ -26,24 +26,12 @@ namespace DeltaruneFrBackEnd.Repositories
 
         public async Task EditVoix(Staff beta)
         {
-            var dictionary = new Dictionary<string, object>();
-            var parameters = new DynamicParameters(dictionary);
-
-            dictionary.Add("@id", beta.id);
-            dictionary.Add("@nom", beta.nom);
-            dictionary.Add("@photo", beta.photo);
-            dictionary.Add("@description", beta.description);
-            dictionary.Add("@lien", beta.lien);
-            dictionary.Add("@nomLien", beta.nomLien);
-            dictionary.Add("@idChapitre", beta.idChapitre);
-            parameters.AddDynamicParams(dictionary);
-
             string sql = @"UPDATE voix 
                         SET nom = @nom, photo = @photo,description = @description, lien = @lien, nomLien = @nomLien, idChapitre = @idChapitre
                         WHERE id = @id";
 
             using var connec = _connectionFactory.Create();
-            await connec.ExecuteAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, beta);
         }
 
         public async Task<IEnumerable<Staff>> GetAllVoixAsync()
@@ -92,22 +80,11 @@ namespace DeltaruneFrBackEnd.Repositories
 
         public async Task SetVoix(Staff beta)
         {
-            var dictionary = new Dictionary<string, object>();
-            var parameters = new DynamicParameters(dictionary);
-
-            dictionary.Add("@nom", beta.nom);
-            dictionary.Add("@photo", beta.photo);
-            dictionary.Add("@description", beta.description);
-            dictionary.Add("@lien", beta.lien);
-            dictionary.Add("@nomLien", beta.nomLien);
-            dictionary.Add("@idChapitre", beta.idChapitre);
-            parameters.AddDynamicParams(dictionary);
-
             string sql = @"INSERT INTO voix (nom, photo, description, lien, nomLien, idChapitre) 
                             VALUES (@nom, @photo, @description, @lien, @nomLien, @idChapitre)";
 
             using var connec = _connectionFactory.Create();
-            await connec.ExecuteAsync(sql, parameters);
+            await connec.ExecuteAsync(sql, beta);
         }
     }
 }
