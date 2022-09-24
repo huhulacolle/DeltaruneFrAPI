@@ -36,7 +36,7 @@ namespace DeltaruneFrBackEnd.Repositories
             await connec.ExecuteAsync(sql, staff);
         }
 
-        public async Task<IEnumerable<StaffDR>> GetAllStaffAsync()
+        public async Task<IEnumerable<StaffDR>> GetAllStaff()
         {
             string sql = "SELECT * FROM staffdr ORDER BY id DESC";
 
@@ -46,7 +46,7 @@ namespace DeltaruneFrBackEnd.Repositories
 
         public async Task<IEnumerable<StaffDR>> GetStaff()
         {
-            string sql = "SELECT DISTINCT nom, photo, description, card lien, nomLien FROM staffdr ORDER BY nom";
+            string sql = "SELECT DISTINCT nom, photo, description, card, lien, nomLien FROM staffdr ORDER BY nom";
 
             using var connec = _connectionFactory.Create();
             return await connec.QueryAsync<StaffDR>(sql);

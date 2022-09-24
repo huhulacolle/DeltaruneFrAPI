@@ -2,7 +2,7 @@
 {
     public interface IStaffRepository
     {
-        public Task<IEnumerable<StaffDR>> GetAllStaffAsync();
+        public Task<IEnumerable<StaffDR>> GetAllStaff();
         public Task<IEnumerable<StaffDR>> GetStaff();
         public Task<IEnumerable<StaffDR>> GetStaffById(int id);
         public Task<IEnumerable<StaffDR>> GetStaffByChapter(int id);
