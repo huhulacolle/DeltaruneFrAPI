@@ -5,14 +5,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './composents/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { API_BASE_URL, BetadeltaruneClient, ProgressiondeltaruneClient, StaffdeltaruneClient, TraducteurdeltaruneClient, UserdeltaruneClient, VoixdeltaruneClient } from './clientSwagger/deltaruneClient';
-import { HomeComponent } from './composents/home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { ApiUrlService, apiUrlServiceFactory } from './services/api-url.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { EditComponent } from './composents/edit/edit.component';
-import { NavbarComponent } from './composents/navbar/navbar.component';
-import { ProgressionComponent } from './composents/progression/progression.component';
+import { EditComponent } from './components/edit/edit.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProgressionComponent } from './components/progression/progression.component';
 
 @NgModule({
   declarations: [
