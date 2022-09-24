@@ -7,9 +7,9 @@ namespace DeltaruneFrBackEnd.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IJWTManagerRepository _jWTManager;
+        private readonly IUserRepository _jWTManager;
 
-        public UserController(IJWTManagerRepository jWTManager)
+        public UserController(IUserRepository jWTManager)
         {
             _jWTManager = jWTManager;
         }

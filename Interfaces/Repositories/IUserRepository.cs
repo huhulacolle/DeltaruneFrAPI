@@ -1,6 +1,6 @@
 ﻿namespace DeltaruneFrBackEnd.Interfaces.Repositories
 {
-    public interface IJWTManagerRepository
+    public interface IUserRepository
     {
         string Authenticate(User users);
         Task CreateAccount(User user);

@@ -43,7 +43,7 @@ builder.Services.AddScoped<IBetaRepository, BetaRepository>();
 
 builder.Services.AddScoped<IVoixRepository, VoixRepository>();
 
-builder.Services.AddScoped<IJWTManagerRepository, JWTManagerRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
