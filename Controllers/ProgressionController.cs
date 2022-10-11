@@ -49,7 +49,7 @@
                 string? mdp = Environment.GetEnvironmentVariable("MDP");
                 string? url = Environment.GetEnvironmentVariable("URL");
 
-                using var client = new FtpClient(host, new System.Net.NetworkCredential { UserName = user, Password = mdp } );
+                using var client = new FtpClient(host, user, mdp);
 
                 await client.ConnectAsync();
 
